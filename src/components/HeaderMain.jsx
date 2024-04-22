@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './imgs/Atlas-white.png'; // Import the image
+import logo from '../imgs/Atlas-white.png'; // Import the image
 
 const Header = () => {
   const headerStyle = {
