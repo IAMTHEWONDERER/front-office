@@ -1,10 +1,13 @@
 import React from 'react'
 import Header from '../components/HeaderMain';
+import FooterGlobal from '../components/Footer';
+
 const HomePage = () => {
   return (
-    <div>
+    <>
         <Header />
-    </div>
+        {/* <FooterGlobal /> */}
+        </>
   )
 }
 
