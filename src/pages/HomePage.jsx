@@ -1,12 +1,10 @@
 import React from 'react'
-import Header from '../components/HeaderMain';
-import FooterGlobal from '../components/Footer';
+import Hero from '../components/homepage/Hero';
 
 const HomePage = () => {
   return (
     <>
-        <Header />
-        {/* <FooterGlobal /> */}
+        <Hero/>
         </>
   )
 }
