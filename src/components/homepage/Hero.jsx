@@ -26,14 +26,13 @@ const Hero = () => {
       <div className="absolute inset-0 bg-black opacity-50"></div>
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white font-koulen">
         <h1 className="text-5xl md:text-7xl font-bold font-koulen">Welcome to Atlas Fitness</h1>
-        <h2 className="text-lg md:text-2xl">Your fitness journey starts here</h2>
-        {scrollDownVisible && (
-          <div className="absolute bottom-10">
-            <p className="text-white text-xl md:text-2xl transition-opacity duration-700 ease-in-out opacity-100 hover:opacity-0">Scroll Down</p>
-          </div>
-        )}
+        <h2 className="text-lg md:text-2xl mb-10">Your fitness journey starts here</h2>
+        <button className="bg-red-700 hover:bg-red-900 text-white px-4 py-2 rounded transition duration-300 ease-in-out">
+            Join Us Now
+          </button>
+        
       </div>
-    </div>
+    </div>  
   );
 };
 

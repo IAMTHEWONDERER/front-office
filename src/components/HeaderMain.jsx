@@ -4,10 +4,11 @@ import logo from '../imgs/Atlas-white.png'; // Import the image
 const Header = () => {
   const headerStyle = {
     fontFamily: 'Koulen, sans-serif', // Use Koulen font with fallback to sans-serif
+    
   };
 
   return (
-    <header className="bg-black bg-opacity-90 text-white py-4" style={headerStyle}>
+    <header className="  backdrop-blur-sm  bg-black bg-opacity-70 text-white py-4" style={headerStyle}>
       <div className="flex flex-col md:flex-row justify-between items-center mx-4 md:mx-auto max-w-7xl">
         {/* Logo */}
         <div className="flex items-center mb-4 md:mb-0">
@@ -29,8 +30,14 @@ const Header = () => {
           <button className="bg-white hover:bg-gray-300 text-black px-4 py-2 rounded mb-2 md:mb-0 md:mr-2 ml-5 transition duration-300 ease-in-out">
             Become a Coach
           </button>
-          <button className="bg-red-600 hover:bg-red-900 text-white px-4 py-2 rounded transition duration-300 ease-in-out">
+          <button className="bg-red-700 hover:bg-red-900 text-white px-4 py-2 rounded transition duration-300 ease-in-out">
             Sign In
+          </button>
+          <button className='space-y-1 group'>
+            <div className='w-6 h-1 bg-white'></div>
+            <div className='w-6 h-1 bg-white'></div>
+            <div className='w-6 h-1 bg-white'></div>
+
           </button>
         </div>
       </div>
