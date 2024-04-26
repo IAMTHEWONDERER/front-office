@@ -25,12 +25,10 @@ const ServicesHero = () => {
       <div className="relative w-full h-screen bg-cover bg-center" style={{ backgroundImage: `url(${heroImg})` }}>
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white font-koulen">
-          <h1 className="text-5xl md:text-7xl font-bold font-koulen">Welcome to Atlas Fitness</h1>
-          <h2 className="text-lg md:text-2xl mb-10">Your fitness journey starts here</h2>
-          <button className="bg-red-700 hover:bg-red-900 text-white px-4 py-2 rounded transition duration-300 ease-in-out">
-              Join Us Now
-            </button>
-          
+          <h1 className="text-5xl md:text-4xl font-koulen">FIND YOUR BEST FIT ON ATLAS</h1><br /><br /><br />
+          <h2 className="text-lg md:text-5xl mb-10 font-bold font-Magra">WE PROVIDE OUR PAYING CUSTOMERS WITH A FREE <br /> 
+                                                            TRAINING PROGRAM, ON US! </h2>
+
         </div>
       </div>  
     );
