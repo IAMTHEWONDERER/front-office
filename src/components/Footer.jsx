@@ -20,13 +20,13 @@ const FooterGlobal = () => {
                           <a href="https://localhost:3000/" class="hover:underline">About</a>
                       </li>
                       <li class="mb-4">
-                          <a href="https://tailwindcss.com/" class="hover:underline">Contact Us</a>
+                          <a href="https://localhost:3000/" class="hover:underline">Contact Us</a>
                       </li>
                       <li class="mb-4">
-                          <a href="https://tailwindcss.com/" class="hover:underline">Join Us</a>
+                          <a href="https://localhost:3000/" class="hover:underline">Join Us</a>
                       </li>
                       <li class="mb-4">
-                          <a href="https://tailwindcss.com/" class="hover:underline">Atlas Media</a>
+                          <a href="https://localhost:3000/" class="hover:underline">Atlas Media</a>
                       </li>
                   </ul>
               </div>
