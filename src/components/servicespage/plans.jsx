@@ -29,10 +29,12 @@ function Plan() {
   };
 
   return (
-<div style={{ width: 'auto', height: '750px', margin: '55px', backgroundColor: 'red' }}></div>
+<div style={{ width: 'auto', height: '750px', margin: '55px', backgroundColor: 'CE0000' }}>
+<h1 style={{ fontFamily: "koulen", width: '100%', textAlign: 'center', fontSize: '4rem', padding: '40px 0px 0px 0px', margin: '30px 0 15px', color: 'white' }}>CHOOSE YOUR PLAN</h1>
+<h2 style={{ fontFamily: "koulen", width: '100%', textAlign: 'center', fontSize: '28.5px', padding: '0px 60px', margin: '15px 0 30px 0 ', color: 'white' }}>Buy YOUR PLAN TODAY aND PLAN IT FOR LATER, Refund is possible during 1 month from the date of purchase (depending on the number of sessions in the package)</h2>
 
-
-  )
+</div>
+)
 }
 
 export default Plan;
