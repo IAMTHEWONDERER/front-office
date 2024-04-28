@@ -56,7 +56,7 @@ export default function Component() {
 
         <div className=" flex justify-center mt-6">
           <div className="max-w-md">
-            <div className="bg-white text-black rounded-full px-3 py-1 text-xl uppercase font-bold flex space-x-4 justify-center">
+            <div className="bg-white text-black rounded-full px-3 py-1 text-2xl uppercase font-bold flex space-x-4 justify-center">
 
             <button
             className={`font-koulen px-4 py-2 rounded-full ${
@@ -79,7 +79,7 @@ export default function Component() {
               setSelectedPlan('In Person');
             }}
           >
-            IN-PERSON
+            IN PERSON
           </button>
 
           <button
