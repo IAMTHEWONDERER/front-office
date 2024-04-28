@@ -10,7 +10,7 @@ const Header = () => {
         <img src={logo} alt="Logo" className="h-8 mr-4" />
       </div>
       <div className="hidden md:flex items-center space-x-4">
-        <a href="#" className="text-white">Home</a>
+        <a href="home" className="text-white">Home</a>
         <a href="#" className="text-white">About Us</a>
         <a href="services" className="text-white">Services</a>
         <button className="  px-4 py-2 bg-white hover:bg-gray-300 text-black rounded transition duration-300 ease-in-out">Become a coach</button>
