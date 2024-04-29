@@ -36,7 +36,7 @@ const OurTeam = () => {
 
       <div className="flex justify-center flex-wrap mt-8">
         {teamMembers.map((member) => (
-          <div key={member.id} className="bg-white max-w-sm rounded-lg overflow-hidden shadow-lg m-4">
+          <div key={member.id} className="max-w-sm rounded-lg overflow-hidden shadow-lg m-4">
             <img src={member.image} alt={member.name} className="w-full h-64 object-cover" />
             <div className="px-6 py-4">
               <div className="font-koulen text-3xl mb-2 text-center">{member.name}</div>
