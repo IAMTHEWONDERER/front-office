@@ -17,7 +17,7 @@ export default function Component() {
             </p>
           </div>
           <div className="grid gap-4">
-            <div className="rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-950">
+            <div className="rounded-lg border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950 shadow-xl">
               <div className="flex w-full items-center justify-between gap-4 px-6 py-4 text-left">
                 <h3 className="text-lg font-medium">What is the pricing structure for your product?</h3>
                 <button
@@ -37,7 +37,7 @@ export default function Component() {
               </div>
             )}
             </div>
-            <div className="rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-950">
+            <div className="rounded-lg border border-gray-200 bg-white shadow-xl dark:border-gray-800 dark:bg-gray-950">
               <div className="flex w-full items-center justify-between gap-4 px-6 py-4 text-left">
                 <h3 className="text-lg font-medium">How long does it take to get started with your product?</h3>
                 <button
@@ -57,7 +57,7 @@ export default function Component() {
               </div>
               )}
             </div>
-            <div className="rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-950">
+            <div className="rounded-lg border border-gray-200 bg-white shadow-xl dark:border-gray-800 dark:bg-gray-950">
               <div className="flex w-full items-center justify-between gap-4 px-6 py-4 text-left">
                 <h3 className="text-lg font-medium">What kind of customer support do you offer?</h3>
                 <button
@@ -78,7 +78,7 @@ export default function Component() {
               </div>
               )}
             </div>
-            <div className="rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-950">
+            <div className="rounded-lg border border-gray-200 bg-white shadow-xl dark:border-gray-800 dark:bg-gray-950">
               <div className="flex w-full items-center justify-between gap-4 px-6 py-4 text-left">
                 <h3 className="text-lg font-medium">Do you offer any integrations or third-party connections?</h3>
                 <button
@@ -99,7 +99,7 @@ export default function Component() {
               </div>
               )}
             </div>
-            <div className="rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-950">
+            <div className="rounded-lg border border-gray-200 bg-white shadow-xl dark:border-gray-800 dark:bg-gray-950">
               <div className="flex w-full items-center justify-between gap-4 px-6 py-4 text-left">
                 <h3 className="text-lg font-medium">What kind of security measures do you have in place?</h3>
                 <button
