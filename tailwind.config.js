@@ -8,6 +8,9 @@ module.exports = {
       fontFamily: {
         koulen: ['Koulen', 'sans-serif'],
       },
+      colors: {
+        'custom-red': '#770000',
+      },
     },
   },
   plugins: [],
