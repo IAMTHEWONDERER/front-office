@@ -6,7 +6,7 @@ const Ourmission = () => {
     <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center">
       <h1 className="text-xl md:text-7xl mt-16 font-koulen">OUR MISSION</h1>
     <div className="flex items-center justify-center min-h-screen bg-black text-white">
-      <div className="flex-1 flex items-center justify-center">
+      <div className="ml-6 flex-1 flex items-center justify-center">
         <img
           src={ourmissionimg}
           alt="Description of the image"
