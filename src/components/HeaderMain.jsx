@@ -5,7 +5,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="backdrop-blur-sm  bg-black bg-opacity-70 text-white p-4 flex items-center justify-between font-koulen">
+    <nav className="backdrop-blur-sm  bg-black bg-opacity-50 text-white p-4 flex items-center justify-between font-koulen">
       <div className="flex items-center ">
         <a href="home"><img src={logo} alt="Logo" className="h-8 mr-4" /></a>
       </div>
