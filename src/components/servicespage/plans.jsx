@@ -79,7 +79,6 @@ export default function Component() {
           >
             IN PERSON
           </button>
-
           <button
             className={`font-koulen px-3 py-2 rounded-full ${
               selectedPlan === 'All-In-One' ? 'bg-gray-300' : ''
@@ -104,14 +103,11 @@ export default function Component() {
           <p className="text-sm">per session</p>
           <p className="text-lg mt-2 md:mt-4 font-koulen">Total Price:</p>
           <p className="text-lg md:text-2xl font-koulen">{sessionPrices[key].total}DH</p>
-          <button className="font-koulen text-lg md:text-xl mt-4 bg-black text-white rounded-full px-5 py-3 hover:text-black hover:bg-gray-300 transition-colors">Choose Plan</button>
-        </div>
+          <button className="font-koulen text-lg md:text-2xl mt-4 mb-6 bg-black text-white rounded-full px-6 py-5 hover:text-black hover:bg-gray-300 transition-colors">Choose Plan</button>
+        </div>  
       ))}
     </div>
   </div>
 </div>
-
-
-
   );
 }
