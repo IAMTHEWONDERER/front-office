@@ -4,13 +4,15 @@ import HomePage from "../pages/HomePage";
 // import Tour from "../pages/tour";
 // import Camping from "../pages/camping";
 // import Login from "../pages/login";
-// import Register from "../pages/register";
+import Register from "../pages/Register";
+
 
 const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/home" element={<HomePage />} /> 
+      <Route path="/register" element={<Register />} />
     </Routes>
   );
 };
