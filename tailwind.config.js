@@ -10,6 +10,7 @@ module.exports = {
       },
       colors: {
         'custom-red': '#770000',
+        'redd': '#FF0000'
       },
     },
   },

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaTwitter, FaInstagram, FaFacebook, FaGithub } from 'react-icons/fa'; // Import social media icons
+import { FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa'; // Import social media icons
 import teamMember1Img from '../../imgs/allinone.jpg';
 import teamMember2Img from '../../imgs/allinone.jpg';
 
@@ -13,6 +13,7 @@ const OurTeam = () => {
       social: {
         github: 'aymane-farajallah',
         instagram: 'hajji__ayman',
+        linkedin: "aymane-farrajallah"
       },
     },
     {
@@ -23,6 +24,7 @@ const OurTeam = () => {
       social: {
         github: 'IAMTHEWONDERER',
         instagram: 'jane_smith_instagram',
+        linkedin : "oussama-alouche"
       },
     },
   ];
@@ -48,6 +50,9 @@ const OurTeam = () => {
               </a>
               <a href={`https://www.instagram.com/${member.social.instagram}`} target="_blank" rel="noopener noreferrer" className="mr-2">
                 <FaInstagram className="md:text-3xl ml-6 mb-6"  />
+              </a>
+              <a href={`https://www.linkedin.com/in/${member.social.linkedin}`} target="_blank" rel="noopener noreferrer" className="mr-2">
+                <FaLinkedin className="md:text-3xl ml-6 mb-6"  />
               </a>
             </div>
           </div>
