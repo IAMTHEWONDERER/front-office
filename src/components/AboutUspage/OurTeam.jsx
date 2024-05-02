@@ -8,7 +8,7 @@ const OurTeam = () => {
     {
       id: 1,
       name: 'Aymane Farajallah',
-      bio: 'Full Stack Web Developer MERN',
+      bio: 'Graphic designer, Full Stack Web Developer',
       image: teamMember1Img,
       social: {
         github: 'aymane-farajallah',
@@ -23,7 +23,7 @@ const OurTeam = () => {
       image: teamMember2Img,
       social: {
         github: 'IAMTHEWONDERER',
-        instagram: 'jane_smith_instagram',
+        instagram: 'wondererxdd',
         linkedin : "oussama-alouche"
       },
     },
