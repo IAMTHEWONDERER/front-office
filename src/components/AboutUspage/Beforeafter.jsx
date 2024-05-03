@@ -35,7 +35,7 @@ export default function Component() {
     const contentContainer = document.querySelector('.content-container');
     if (!contentContainer) return;
   
-    const offset = 500; // Adjust the offset based on your design
+    const offset = 500;
   
     if (direction === 'left') {
       contentContainer.classList.add('-translate-x-full');
@@ -45,14 +45,13 @@ export default function Component() {
       setCurrentUserIndex((prevIndex) => (prevIndex === users.length - 1 ? 0 : prevIndex + 1));
     }
   
-    // Reset class after animation (assuming the animation duration is 0.3s)
     setTimeout(() => {
       contentContainer.classList.remove('-translate-x-full', 'translate-x-full');
     }, 300);
   };
   
-
   return (
+
     <div className="flex flex-col items-center justify-center py-8">
       <h2 className="text-3xl font-bold uppercase tracking-widest">Before and After</h2>
       <div className="flex items-center justify-between w-full max-w-6xl mt-8">
@@ -61,9 +60,8 @@ export default function Component() {
           className="text-black cursor-pointer hover:text-gray-500"
           onClick={() => handleArrowClick('left')}
         />
-
-        
-        <div className="flex space-x-12 content-container transition-transform duration-300 ease-in-out transform scale-100 opacity-100">
+    
+        <div className="flex space-x-12 content-container transition-transform duration-300 ease-in-in transform scale-100 opacity-100">
           <div className="bg-white p-4 shadow-lg w-[400px]">
             <div className="flex justify-between mb-2">
               <TabButton active={activeTab === 'before'} onClick={() => handleTabClick('before')}>
