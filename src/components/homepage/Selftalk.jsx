@@ -1,9 +1,7 @@
 import React from 'react';
 import people from '../../imgs/people.jpg';
 import barbell from '../../imgs/barbell.jpg';
-import online from '../../imgs/online.jpg';
-import allinone from '../../imgs/allinone.jpg';
-import inperson from '../../imgs/inperson.jpg';
+
 const SelfTalk = () => {
   return (
     <>
@@ -41,59 +39,6 @@ const SelfTalk = () => {
       
     </div>
     
-    <div className="grid grid-row items-center justify-center h-screen bg-white font-koulen text-center m-3">
-      <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
-        <h1 className="text-5xl font-bold mb-2 text-center font-koulen ">Our services and their advantages</h1>
-      </div>
-      <div className="flex flex-wrap justify-center">
-        <div className="w-full md:w-1/3 p-4">
-          <div className="bg-black text-white rounded-lg shadow-md p-4 mb-4">
-            <img src={online} alt="Random" className="w-full lg:h-64 md:h-32 object-cover rounded-t-lg" />
-            <div className="p-4">
-              <h2 className="text-3xl font-bold mb-2 text-center ">Online</h2>
-<ul>
-<li className='mb-4'>
-> Weekly Online Sessions With Your Coach.
-</li>
- <li className='mb-4'>> Free gym training program</li>
- <li className='mb-4'>> Flexibility in schedule</li>
-  </ul>              <button className="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4  rounded transition duration-300 ease-in-out md:mb-0">Book here</button>
-            </div>
-          </div>
-        </div>
-        <div className="w-full md:w-1/3 p-4">
-          <div className="bg-black text-white rounded-lg shadow-md p-4 mb-4 transform -translate-y-4">
-            <img src={allinone} alt="Random" className="w-full lg:h-64 md:h-32 object-cover rounded-t-lg" />
-            <div className="p-4">
-              <h2 className="text-3xl font-bold mb-2 text-center">ALL-IN-ONE</h2>
-<ul>
-<li  className='mb-4'>
-> Weekly Online & in person Sessions With Your Coach.
-</li>
- <li  className='mb-4'>> free training and nutrition programs provided by Atlas</li>
- <li  className='mb-6'>> Flexibility in all schedules</li>
-  </ul>              <button className="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4  rounded transition duration-300 ease-in-out">book here</button>
-            </div>
-          </div>
-        </div>
-        <div className="w-full md:w-1/3 p-4 ">
-          <div className="bg-black text-white rounded-lg shadow-md p-4 mb-4">
-            <img src={inperson} alt="Random" className="w-full lg:h-64 md:h-32 object-cover rounded-t-lg" />
-            <div className="p-4">
-              <h2 className="text-3xl font-bold mb-2 text-center">IN PERSON</h2>
-              <ul>
-<li  className='mb-4'>
-> Weekly in person Sessions With Your Coach.
-</li>
- <li  className='mb-4'>> free training program provided by Atlas</li>
- <li  className='mb-4'>> At home or in gym sessions</li>
-                </ul>
-              <button className="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4  rounded transition duration-300 ease-in-out">book here</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     </>
   );
