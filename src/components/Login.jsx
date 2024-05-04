@@ -13,7 +13,6 @@ const Login = () => {
   const { register, handleSubmit } = useForm()
   const navigate = useNavigate()
 
-  // Redirect to user dashboard if already logged in
   useEffect(() => {
     if (userInfo) {
       navigate('/user-dashboard')
