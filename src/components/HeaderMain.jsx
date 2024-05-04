@@ -9,15 +9,15 @@ const Header = () => {
     <>
       <nav className="backdrop-blur-sm bg-black bg-opacity-50 text-white p-4 flex items-center justify-between font-koulen">
         <div className="flex items-center">
-          <Link to="/">
+          <Link to="/homepage">
             <img src={logo} alt="Logo" className="h-8 mr-4" />
           </Link>
         </div>
         <div className="hidden md:flex items-center space-x-4">
-          <Link to="/" className="text-white">
+          <Link to="/homepage" className="text-white">
             Home
           </Link>
-          <Link to="/about-us" className="text-white">
+          <Link to="/aboutus" className="text-white">
             About Us
           </Link>
           <Link to="/services" className="text-white">
