@@ -1,68 +1,56 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
-import { loginUser } from "../auth/authSlice";
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { userLogin } from '../auth/authActions'
+import { useEffect } from 'react'
+import Error from '../handlers/Error'
+import Spinner from '../handlers/Spinner'
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate(); // Initialize useNavigate hook
-  const loginStatus = useSelector((state) => state.auth.status);
-  const loginError = useSelector((state) => state.auth.error);
+  const { loading, userInfo, error } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
 
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const { register, handleSubmit } = useForm()
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const navigate = useNavigate()
 
-  const handleSubmit = async (e) => { // make handleSubmit async to use await
-    e.preventDefault();
-    try {
-      const response = await dispatch(loginUser(formData));
-      // Redirect to "/home" upon successful login
-      if (response.payload) {
-        navigate("/home"); // Use navigate function directly
-      }
-    } catch (error) {
-      console.error("Login error:", error);
+  // redirect authenticated user to profile screen
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/user-dashboard')
     }
-  };
+  }, [navigate, userInfo])
+
+  const submitForm = (data) => {
+    dispatch(userLogin(data))
+  }
 
   return (
-    <div className="pt-20">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email:
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <button type="submit" disabled={loginStatus === "loading"}>
-          {loginStatus === "loading" ? "Logging in..." : "Login"}
-        </button>
-        {loginStatus === "failed" && <div>Error: {loginError}</div>}
-      </form>
-    </div>
-  );
-};
+    <form onSubmit={handleSubmit(submitForm)}>
+      {error && <Error>{error}</Error>}
+      <div className='form-group'>
+        <label htmlFor='email'>email</label>
+        <input
+          type='text'
+          className='form-input'
+          {...register('email')}
+          required
+        />
+      </div>
+      <div className='form-group'>
+        <label htmlFor='password'>Password</label>
+        <input
+          type='password'
+          className='form-input'
+          {...register('password')}
+          required
+        />
+      </div>
+      <button type='submit' className='button' disabled={loading}>
+        {loading ? <Spinner /> : 'Login'}
+      </button>
+    </form>
+  )
+}
 
-export default Login;
+export default Login

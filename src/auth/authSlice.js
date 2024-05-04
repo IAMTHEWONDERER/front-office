@@ -1,80 +1,66 @@
-  // src/authSlice.js
-  import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
+import { registerUser, userLogin } from './authActions'
 
+// initialize userToken from local storage
+const userToken = localStorage.getItem('userToken')
+  ? localStorage.getItem('userToken')
+  : null
 
-  export const registerUser = createAsyncThunk(
-    "authSlice/registerUser",
-    async (userData, thunkAPI) => {
-      try {
-        const response = await fetch("http://localhost:3040/api/registeruser", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(userData),
-        });
-        
-        const data = await response.json();
-        return data;
-      } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data);
-      }
+const initialState = {
+  loading: false,
+  userInfo: null,
+  userToken,
+  error: null,
+  success: false,
+}
+
+const authSlice = createSlice({
+  name: 'user',
+  initialState,
+  reducers: {
+    logout: (state) => {
+      localStorage.removeItem('userToken') // delete token from storage
+      state.loading = false
+      state.userInfo = null
+      state.userToken = null
+      state.error = null
     },
-  );
-
-  export const loginUser = createAsyncThunk(
-    "authSlice/loginUser",
-    async (userData, thunkAPI) => {
-      try {
-        const response = await fetch("http://localhost:3040/api/loginuser", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(userData),
-        });
-        const data = await response.json();
-        return data;
-      } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data);
-      }
+    setCredentials: (state, { payload }) => {
+      state.userInfo = payload
     },
-  );
+  },
+  extraReducers: (builder) => {
+    builder
+      // login user
+      .addCase(userLogin.pending, (state) => {
+        state.loading = true
+        state.error = null
+      })
+      .addCase(userLogin.fulfilled, (state, { payload }) => {
+        state.loading = false
+        state.userInfo = payload
+        state.userToken = payload.userToken
+      })
+      .addCase(userLogin.rejected, (state, { payload }) => {
+        state.loading = false
+        state.error = payload
+      })
+      // register user
+      .addCase(registerUser.pending, (state) => {
+        state.loading = true
+        state.error = null
+      })
+      .addCase(registerUser.fulfilled, (state) => {
+        state.loading = false
+        state.success = true // registration successful
+      })
+      .addCase(registerUser.rejected, (state, { payload }) => {
+        state.loading = false
+        state.error = payload
+      })
+  },
+})
 
-  const authSlice = createSlice({
-    name: "auth",
-    initialState: {
-      status: "idle",
-      error: null,
-      user: null,
-    },
-    reducers: {},
-    extraReducers(builder) {
-      builder
-        .addCase(registerUser.pending, (state) => {
-          state.status = "loading";
-          state.error = null;
-        })
-        .addCase(registerUser.fulfilled, (state) => {
-          state.status = "succeeded";
-        })
-        .addCase(registerUser.rejected, (state, action) => {
-          state.status = "failed";
-          state.error = action.payload;
-        })
-        .addCase(loginUser.pending, (state) => {
-          state.status = "loading";
-          state.error = null;
-        })
-        .addCase(loginUser.fulfilled, (state, action) => {
-          state.status = "succeeded";
-          state.user = action.payload;
-        })
-        .addCase(loginUser.rejected, (state, action) => {
-          state.status = "failed";
-          state.error = action.payload;
-        });
-    },
-  });
+export const { logout, setCredentials } = authSlice.actions
 
-  export default authSlice.reducer;
+export default authSlice.reducer
