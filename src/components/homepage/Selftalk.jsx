@@ -1,9 +1,7 @@
 import React from 'react';
 import people from '../../imgs/people.jpg';
 import barbell from '../../imgs/barbell.jpg';
-import online from '../../imgs/online.jpg';
-import allinone from '../../imgs/allinone.jpg';
-import inperson from '../../imgs/inperson.jpg';
+
 const SelfTalk = () => {
   return (
     <>

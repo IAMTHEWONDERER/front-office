@@ -1,7 +1,7 @@
 import React from 'react'
 import Register from '../components/Register';
 
-const HomePage = () => {
+const RegisterPage = () => {
   return (
     <>
         <Register/>
@@ -10,4 +10,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+export default RegisterPage
