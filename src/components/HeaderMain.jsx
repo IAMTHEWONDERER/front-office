@@ -66,10 +66,10 @@ const Header = () => {
       </nav>
       {isOpen && (
         <div className="md:hidden flex flex-col items-center space-y-4 bg-black bg-opacity-70 text-white p-4 absolute w-full top-16">
-          <Link to="/homepage" className="text-white">
+          <Link to="/home" className="text-white">
             Home
           </Link>
-          <Link to="/aboutus" className="text-white">
+          <Link to="/about-us" className="text-white">
             About Us
           </Link>
           <Link to="/services" className="text-white">

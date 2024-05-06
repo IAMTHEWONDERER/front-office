@@ -1,23 +1,22 @@
 import React from 'react';
+import backimage from '../imgs/backregistercoach.jpg'
 
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/o3MfBSJEdYS
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
 export default function Component() {
+
+    const backgroundStyle = {
+        backgroundImage: `url(${backimage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+    };
+
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-[#ff0000] to-[#000000] px-4 py-12 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8">
-          <div>
-            <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-white">Register as a Coach</h2>
-            <p className="mt-2 text-center text-sm text-gray-300">
-              Fill out the form below to create your coach profile.
-            </p>
-          </div>
+        <div className="relative min-h-screen flex flex-col items-center justify-center" style={backgroundStyle}>
+        <div className="bg-grey-400 bg-opacity-10 backdrop-blur-md rounded-lg px-8 py-12 sm:px-12 lg:px-16 max-w-md w-full mx-auto mt-20 mb-8 z-10">
+          <h2 className="text-3xl font-bold text-white mb-8">Register as a Coach</h2>
+
           <form action="#" className="space-y-6" method="POST">
             <div>
-              <label className="block text-sm font-medium text-white" htmlFor="fullName">
+              <label className="block text-lg text-white" htmlFor="fullName">
                 Full Name
               </label>
               <div className="mt-1">
@@ -32,7 +31,7 @@ export default function Component() {
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-white" htmlFor="email">
+              <label className="block text-lg text-white" htmlFor="email">
                 Email address
               </label>
               <div className="mt-1">
@@ -47,7 +46,7 @@ export default function Component() {
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-white" htmlFor="phone">
+              <label className="block text-lg text-white" htmlFor="phone">
                 Phone Number
               </label>
               <div className="mt-1">
@@ -62,12 +61,12 @@ export default function Component() {
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-white" htmlFor="cv">
+              <label className="block text-lg text-white" htmlFor="cv">
                 Upload CV
               </label>
               <div className="mt-1">
                 <input
-                  className="block w-full rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] sm:text-sm"
+                  className="block w-full text-white rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] sm:text-sm"
                   id="cv"
                   name="cv"
                   required
@@ -76,12 +75,12 @@ export default function Component() {
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-white" htmlFor="profilePicture">
+              <label className="block text-lg text-white" htmlFor="profilePicture">
                 Upload Profile Picture
               </label>
               <div className="mt-1">
                 <input
-                  className="block w-full rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] sm:text-sm"
+                  className="block w-full text-white rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] sm:text-sm"
                   id="profilePicture"
                   name="profilePicture"
                   required
