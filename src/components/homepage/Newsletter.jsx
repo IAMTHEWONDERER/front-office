@@ -11,10 +11,8 @@ const Newsletter = () => {
         </div>
         <br/>
         <div className="flex space-x-4 items-center justify-center gap-5 mt-5">
-        <button className=" bg-red-600 hover:bg-red-900 text-white px-4 py-2 rounded transition duration-300 ease-in-out">
-  Book NOW
-</button>          
-<button className="bg-black text-white hover:bg-gray-800 px-4 py-2 rounded transition duration-300 ease-in-out">REGISTER</button>
+      <button className=" bg-red-600 hover:bg-red-900 text-white px-4 py-2 rounded transition duration-300 ease-in-out">Book NOW </button>          
+      <a href="/register"><button className="bg-black text-white hover:bg-gray-800 px-4 py-2 rounded transition duration-300 ease-in-out">REGISTER</button></a>
         </div>
       </div>
       <hr className="my-8 border-gray-300" />
