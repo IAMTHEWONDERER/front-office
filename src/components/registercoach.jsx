@@ -61,6 +61,66 @@ export default function Component() {
               </div>
             </div>
             <div>
+            <label className="block text-lg text-white" htmlFor="password">
+              Password
+            </label>
+            <div className="mt-1">
+              <input
+                autoComplete="new-password"
+                className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] sm:text-sm"
+                id="password"
+                name="password"
+                required
+                type="password"
+              />
+            </div>
+          </div>
+          <div>
+            <label className="block text-lg text-white" htmlFor="gender">
+              Gender
+            </label>
+            <div className="mt-1">
+              <select
+                className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] sm:text-sm"
+                id="gender"
+                name="gender"
+                required
+              >
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label className="block text-lg text-white" htmlFor="city">
+              City
+            </label>
+            <div className="mt-1">
+              <input
+                className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] sm:text-sm"
+                id="city"
+                name="city"
+                required
+                type="text"
+              />
+            </div>
+          </div>
+          <div>
+            <label className="block text-lg text-white" htmlFor="address">
+              Address
+            </label>
+            <div className="mt-1">
+              <input
+                className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] sm:text-sm"
+                id="address"
+                name="address"
+                required
+                type="text"
+              />
+            </div>
+          </div>
+          <div>
               <label className="block text-lg text-white" htmlFor="cv">
                 Upload CV
               </label>
@@ -100,4 +160,4 @@ export default function Component() {
         </div>
       </div>
     )
-  }
+}
