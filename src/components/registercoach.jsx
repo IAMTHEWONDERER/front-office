@@ -11,7 +11,7 @@ export default function Component() {
 
     return (
         <div className="relative min-h-screen flex flex-col items-center justify-center" style={backgroundStyle}>
-        <div className=" bg-opacity-45 backdrop-blur-md bg-gray-200 rounded-lg px-8 py-12 sm:px-12 lg:px-16 max-w-md w-full mx-auto mt-20 mb-8 z-10">
+        <div className=" bg-opacity-35 backdrop-blur-md bg-gray-200 rounded-lg px-8 py-12 sm:px-12 lg:px-16 max-w-md w-full mx-auto mt-20 mb-8 z-10">
           <h2 className="text-3xl font-semibold text-black ml-6 mb-8">Register as a Coach</h2>
 
           <form action="#" className="space-y-6" method="POST">
@@ -46,21 +46,6 @@ export default function Component() {
               </div>
             </div>
             <div>
-              <label className="block text-lg font-semibold text-black" htmlFor="phone">
-                Phone Number
-              </label>
-              <div className="mt-1">
-                <input
-                  autoComplete="tel"
-                  className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] sm:text-sm"
-                  id="phone"
-                  name="phone"
-                  required
-                  type="tel"
-                />
-              </div>
-            </div>
-            <div>
             <label className="block text-lg font-semibold text-black" htmlFor="password">
               Password
             </label>
@@ -75,6 +60,21 @@ export default function Component() {
               />
             </div>
           </div>
+            <div>
+              <label className="block text-lg font-semibold text-black" htmlFor="phone">
+                Phone Number
+              </label>
+              <div className="mt-1">
+                <input
+                  autoComplete="tel"
+                  className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] sm:text-sm"
+                  id="phone"
+                  name="phone"
+                  required
+                  type="tel"
+                />
+              </div>
+            </div>
           <div>
             <label className="block text-lg font-semibold text-black" htmlFor="gender">
               Gender
@@ -151,7 +151,7 @@ export default function Component() {
             </div>
             <div>
               <button
-                className="flex w-full justify-center rounded-md bg-[#ff0000] py-2 px-4 text-sm font-medium text-black shadow-sm hover:bg-[#cc0000] focus:outline-none focus:ring-2 focus:ring-[#ff0000] focus:ring-offset-2"
+                className="flex w-full justify-center rounded-md bg-[#ff0000] py-2 px-4 text-xl font-medium text-black shadow-sm hover:bg-[#cc0000] focus:outline-none focus:ring-2 focus:ring-[#ff0000] focus:ring-offset-2"
                 type="submit"
               >
                 Register
