@@ -11,7 +11,7 @@ export default function Component() {
 
     return (
         <div className="relative min-h-screen flex items-center justify-center" style={backgroundStyle}>
-        <div className="bg-opacity-45 mt-10 font-koulen backdrop-blur-md bg-gray-200 rounded-lg px-8 py-12 sm:px-12 mx-auto z-10">
+        <div className=" bg-opacity-45 mt-10 font-koulen backdrop-blur-md bg-gray-200 rounded-lg px-8 py-12 sm:px-12 mx-auto z-10">
         <div>
           <h2 className="mt-6 text-center text-3xl tracking-tight text-white mb-8">Register as a Coach</h2>
         </div>
@@ -23,12 +23,14 @@ export default function Component() {
               </label>
               <div className="mt-1">
                 <input
+                  autoComplete="fullName"
                   className="block w-full appearance-none rounded-md border border-gray-300 px-2 py-1 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] text-sm"
                   name="fullName"
+                  id="fullName"
                   required
                   type="text"
                 />
-              </div>
+              </div>    
             </div>
             <div>
               <label className="block text-lg font-medium text-white" htmlFor="email">
