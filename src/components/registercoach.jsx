@@ -11,12 +11,12 @@ export default function Component() {
 
     return (
         <div className="relative min-h-screen flex flex-col items-center justify-center" style={backgroundStyle}>
-        <div className="bg-grey-400 bg-opacity-10 backdrop-blur-md rounded-lg px-8 py-12 sm:px-12 lg:px-16 max-w-md w-full mx-auto mt-20 mb-8 z-10">
-          <h2 className="text-3xl font-bold text-white mb-8">Register as a Coach</h2>
+        <div className=" bg-opacity-45 backdrop-blur-md bg-gray-200 rounded-lg px-8 py-12 sm:px-12 lg:px-16 max-w-md w-full mx-auto mt-20 mb-8 z-10">
+          <h2 className="text-3xl font-semibold text-black ml-6 mb-8">Register as a Coach</h2>
 
           <form action="#" className="space-y-6" method="POST">
             <div>
-              <label className="block text-lg text-white" htmlFor="fullName">
+              <label className="block text-lg font-semibold text-black" htmlFor="fullName">
                 Full Name
               </label>
               <div className="mt-1">
@@ -31,7 +31,7 @@ export default function Component() {
               </div>
             </div>
             <div>
-              <label className="block text-lg text-white" htmlFor="email">
+              <label className="block text-lg font-semibold text-black" htmlFor="email">
                 Email address
               </label>
               <div className="mt-1">
@@ -46,7 +46,7 @@ export default function Component() {
               </div>
             </div>
             <div>
-              <label className="block text-lg text-white" htmlFor="phone">
+              <label className="block text-lg font-semibold text-black" htmlFor="phone">
                 Phone Number
               </label>
               <div className="mt-1">
@@ -61,7 +61,7 @@ export default function Component() {
               </div>
             </div>
             <div>
-            <label className="block text-lg text-white" htmlFor="password">
+            <label className="block text-lg font-semibold text-black" htmlFor="password">
               Password
             </label>
             <div className="mt-1">
@@ -76,7 +76,7 @@ export default function Component() {
             </div>
           </div>
           <div>
-            <label className="block text-lg text-white" htmlFor="gender">
+            <label className="block text-lg font-semibold text-black" htmlFor="gender">
               Gender
             </label>
             <div className="mt-1">
@@ -93,7 +93,7 @@ export default function Component() {
             </div>
           </div>
           <div>
-            <label className="block text-lg text-white" htmlFor="city">
+            <label className="block font-semibold text-lg text-black" htmlFor="city">
               City
             </label>
             <div className="mt-1">
@@ -107,7 +107,7 @@ export default function Component() {
             </div>
           </div>
           <div>
-            <label className="block text-lg text-white" htmlFor="address">
+            <label className="block font-semibold text-lg text-black" htmlFor="address">
               Address
             </label>
             <div className="mt-1">
@@ -120,13 +120,14 @@ export default function Component() {
               />
             </div>
           </div>
+          
           <div>
-              <label className="block text-lg text-white" htmlFor="cv">
+              <label className="block font-semibold text-lg text-black" htmlFor="cv">
                 Upload CV
               </label>
               <div className="mt-1">
                 <input
-                  className="block w-full text-white rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] sm:text-sm"
+                  className="block w-full text-black rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] sm:text-sm"
                   id="cv"
                   name="cv"
                   required
@@ -135,12 +136,12 @@ export default function Component() {
               </div>
             </div>
             <div>
-              <label className="block text-lg text-white" htmlFor="profilePicture">
+              <label className="block font-semibold text-lg text-black" htmlFor="profilePicture">
                 Upload Profile Picture
               </label>
               <div className="mt-1">
                 <input
-                  className="block w-full text-white rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] sm:text-sm"
+                  className="block w-full text-black rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] sm:text-sm"
                   id="profilePicture"
                   name="profilePicture"
                   required
@@ -150,7 +151,7 @@ export default function Component() {
             </div>
             <div>
               <button
-                className="flex w-full justify-center rounded-md bg-[#ff0000] py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-[#cc0000] focus:outline-none focus:ring-2 focus:ring-[#ff0000] focus:ring-offset-2"
+                className="flex w-full justify-center rounded-md bg-[#ff0000] py-2 px-4 text-sm font-medium text-black shadow-sm hover:bg-[#cc0000] focus:outline-none focus:ring-2 focus:ring-[#ff0000] focus:ring-offset-2"
                 type="submit"
               >
                 Register
