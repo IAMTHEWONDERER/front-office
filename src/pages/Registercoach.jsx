@@ -5,7 +5,7 @@ const RegisterCoach = () => {
   return (
     <>
         <Registercoach/>
-        </>
+    </>
   )
 }
 

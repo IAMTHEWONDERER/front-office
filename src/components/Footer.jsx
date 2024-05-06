@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../imgs/Atlas-white.png'
+
 const FooterGlobal = () => {
   return (
     
