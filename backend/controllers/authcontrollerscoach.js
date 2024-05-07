@@ -54,7 +54,7 @@ const registercoach = async (req, res) => {
       return res.status(400).send({ error: 'coach image is required' });
     }
 
-    const { fullname, email, password, gender, city, address } = req.body;
+    const { fullname, email, password, gender, city, phone_number , address } = req.body;
 
     const existingcoach = await coach.findOne({ email });
     if (existingcoach) {
@@ -68,6 +68,7 @@ const registercoach = async (req, res) => {
       gender,
       city,
       address,
+      phone_number,
       image: req.file.filename,
     });
 

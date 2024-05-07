@@ -1,13 +1,80 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import backimage from '../imgs/backregistercoach.jpg'
 
 export default function Component() {
 
-    const backgroundStyle = {
-        backgroundImage: `url(${backimage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-    };
+  const [formData, setFormData] = useState({
+    fullname: '',
+    email: '',
+    password: '',
+    phone_number: '',
+    gender: '',
+    city: '',
+    address: '',
+    image: null,
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    // Ensure a file is selected
+    if (files && files.length > 0) {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: files[0],
+      }));
+    } else {
+      console.warn('No file selected for', name);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const formDataToSend = new FormData();
+      for (const key in formData) {
+        formDataToSend.append(key, formData[key]);
+      }
+
+      const response = await axios.post(
+        'http://localhost:3111/api/registercoach',
+        formDataToSend,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      console.log(response.data);
+
+      setFormData({
+        fullname: '',
+        email: '',
+        password: '',
+        phone_number: '',
+        gender: '',
+        city: '',
+        address: '',
+        image: '',
+      });
+    } catch (error) {
+      console.error('Error registering coach:', error);
+    }
+  };
+
+  const backgroundStyle = {
+    backgroundImage: `url(${backimage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  };  
 
     return (
         <div className="relative min-h-screen flex items-center justify-center" style={backgroundStyle}>
@@ -15,20 +82,21 @@ export default function Component() {
         <div>
           <h2 className="mt-6 text-center text-3xl tracking-tight text-white mb-8">Register as a Coach</h2>
         </div>
-        <form action="#" className="space-y-6" method="POST">
+        <form onSubmit={handleSubmit} className="space-y-6" method="POST">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label className="block text-lg font-medium text-white" htmlFor="fullName">
+              <label className="block text-lg font-medium text-white" htmlFor="fullname">
                 Full Name
               </label>
               <div className="mt-1">
                 <input
-                  autoComplete="fullName"
+                  autoComplete="fullname"
                   className="block w-full appearance-none rounded-md border border-gray-300 px-2 py-1 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] text-sm"
-                  name="fullName"
-                  id="fullName"
+                  name="fullname"
+                  id="fullname"
                   required
                   type="text"
+                  onChange={handleChange}
                 />
               </div>    
             </div>
@@ -44,23 +112,24 @@ export default function Component() {
                   name="email"
                   required
                   type="email"
+                  onChange={handleChange}
                 />
               </div>
             </div>
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label className="block text-lg font-medium text-white" htmlFor="phone">
+              <label className="block text-lg font-medium text-white" htmlFor="phone_number">
                 Phone Number
               </label>
               <div className="mt-1">
                 <input
                   autoComplete="tel"
                   className="block w-full appearance-none rounded-md border border-gray-300 px-2 py-1 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] text-sm"
-                  id="phone"
-                  name="phone"
-                  required
+                  id="phone_number"
+                  name="phone_number"
                   type="tel"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -76,6 +145,7 @@ export default function Component() {
                   name="password"
                   required
                   type="password"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -90,6 +160,7 @@ export default function Component() {
                   className="block w-full appearance-none rounded-md border border-gray-300 px-2 py-1 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] text-sm"
                   id="gender"
                   name="gender"
+                  onChange={handleChange}
                   required
                 >
                   <option value="">Select gender</option>
@@ -109,6 +180,7 @@ export default function Component() {
                   name="address"
                   required
                   type="text"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -125,6 +197,7 @@ export default function Component() {
                   name="city"
                   required
                   type="text"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -139,22 +212,21 @@ export default function Component() {
                   className="block w-full rounded-md border border-gray-300 px-2 py-1 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] text-sm"
                   id="cv"
                   name="cv"
-                  required
                   type="file"
                 />
               </div>
             </div>
             <div>
-              <label className="block text-lg font-medium text-white" htmlFor="profilePicture">
+              <label className="block text-lg font-medium text-white" htmlFor="image">
                 Upload Profile Picture
               </label>
               <div className="mt-1">
                 <input
                   className="block w-full rounded-md border border-gray-300 px-2 py-1 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] text-sm"
-                  id="profilePicture"
-                  name="profilePicture"
-                  required
+                  id="image"
+                  name="image"              
                   type="file"
+                  onChange={handleFileChange}
                 />
               </div>
             </div>

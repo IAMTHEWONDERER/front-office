@@ -3,8 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const coachStorage = multer.diskStorage({
-    destination: function (req, file, cb) {     
-        console.log("hello");
+    destination: function (req, file, cb) {
   
         const uploadPath = path.join('uploads', 'coach');
         fs.mkdirSync(uploadPath, { recursive: true });
