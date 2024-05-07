@@ -7,6 +7,8 @@ import AboutUs from "../pages/AboutUs";
 // import Camping from "../pages/camping";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import UserDashboard from "../pages/UserDashboard";
+import NotFound from "../pages/NotFound";
 
 
 const Router = () => {
@@ -15,9 +17,11 @@ const Router = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/home" element={<HomePage />} /> 
       <Route path="/services" element={<ServicesPage />} />
-      <Route path="/about-us" element={<AboutUs />} />  
+      <Route path="/aboutus" element={<AboutUs />} />  
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/user-dashboard" element = {<UserDashboard/>}/>
+      <Route path="*" element={<NotFound/>} />
     </Routes>
   );
 };
