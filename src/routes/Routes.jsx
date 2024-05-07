@@ -9,6 +9,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import UserDashboard from "../pages/UserDashboard";
 import NotFound from "../pages/NotFound";
+import FilterChoice from "../pages/FilterChoice";
 
 
 const Router = () => {
@@ -22,6 +23,7 @@ const Router = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/user-dashboard" element = {<UserDashboard/>}/>
       <Route path="*" element={<NotFound/>} />
+      <Route path="/find-a-coach" element ={<FilterChoice/>}/>
     </Routes>
   );
 };
