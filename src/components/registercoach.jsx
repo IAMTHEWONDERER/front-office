@@ -213,6 +213,7 @@ export default function Component() {
                   id="cv"
                   name="cv"
                   type="file"
+                  onChange={handleFileChange}
                 />
               </div>
             </div>
@@ -231,6 +232,20 @@ export default function Component() {
               </div>
             </div>
           </div>
+          <div>
+              <label className="block text-lg font-medium text-white" htmlFor="cin">
+                Upload CIN
+              </label>
+              <div className="mt-1">
+                <input
+                  className="block w-full rounded-md border border-gray-300 px-2 py-1 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] text-sm"
+                  id="cin"
+                  name="cin"
+                  type="file"
+                  onChange={handleFileChange}
+                />
+              </div>
+            </div>
           <div className="flex justify-center">
             <button
               className="bg-red-600 hover:bg-red-900 text-white px-4 py-2 rounded transition duration-300 ease-in-out"

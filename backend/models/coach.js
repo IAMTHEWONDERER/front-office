@@ -68,6 +68,10 @@ const coachSchema = new Schema({
   cv: {
   type: String  
   },
+
+  cin: {
+    type: String  
+  },
   
   availability: {
   type: String,
