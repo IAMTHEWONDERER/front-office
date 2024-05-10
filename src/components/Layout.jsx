@@ -14,16 +14,20 @@ const Layout = ({ children }) => {
             <div className="sticky top-0 z-20">
                 {/* Absolute container */}
                 <div className="absolute w-full z-20">
-                    {!isNotFoundPage && <Header />}
+                    {/* {!isNotFoundPage && <Header />} */}
+                    <Header />
                 </div>
             </div>
             <main>{children}</main>
             <Routers />
-            {!isNotFoundPage && (
+            {/* {!isNotFoundPage && (
                 <div className='mt-auto'>
                     <FooterGlobal />
                 </div>
-            )}
+            )} */}
+            <div className='mt-auto'>
+                    <FooterGlobal />
+                </div>
         </div>
     );
 };
