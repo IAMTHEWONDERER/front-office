@@ -12,4 +12,4 @@ const SpecialLayout = ({ children }) => {
   );
 };
 
-export default SpecialLayout;    
+export default SpecialLayout;   
