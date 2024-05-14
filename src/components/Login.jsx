@@ -1,27 +1,72 @@
-import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { userLogin } from '../auth/authActions'
-import Error from '../handlers/Error'
-import Spinner from '../handlers/Spinner'
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { userLogin } from '../auth/authActions';
+import Error from '../handlers/Error';
+import Spinner from '../handlers/Spinner';
 
 const Login = () => {
-  const { loading, userInfo, error } = useSelector((state) => state.auth)
-  const dispatch = useDispatch()
+  const { loading, userInfo, error } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-  const { register, handleSubmit } = useForm()
-  const navigate = useNavigate()
+  const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (userInfo) {
-      navigate('/user-dashboard')
+      navigate('/user-dashboard');
     }
-  }, [navigate, userInfo])
+  }, [navigate, userInfo]);
 
-  const submitForm = (data) => {
-    dispatch(userLogin(data))
-  }
+  const submitForm = async (data) => {
+    try {
+      const userResponse = await fetch('http://localhost:3111/api/loginuser', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),       
+      });
+  
+      const userResult = await userResponse.json();
+      
+      if (userResponse.ok) {
+        if (userResult.success) {
+          console.log('User login successful:', userResult);
+          navigate('/user-dashboard');
+          return; 
+        } else {
+          console.error('Login error:', 'Invalid login data');
+        }
+      } else {
+        console.error('Login error:', 'Invalid login data');
+      }
+      
+      const coachResponse = await fetch('http://localhost:3111/api/logincoach', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+  
+      const coachResult = await coachResponse.json();
+  
+      if (coachResponse.ok) {
+        if (coachResult.success) {
+          console.log('Coach login successful:', coachResult);
+          navigate('/coach-dashboard');
+        } else {
+          console.error('Login error:', 'Invalid login data');
+        }
+      } else {
+        console.error('Login error:', 'Invalid login data');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+    }
+  };  
 
   return (
     <div className="flex flex-col md:flex-row items-center justify-center h-screen bg-gray-100">
@@ -56,7 +101,7 @@ const Login = () => {
         <p className="text-center text-gray-600">Don't have an account? <a href="/register" className="text-blue-500">Register here</a></p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

@@ -49,9 +49,9 @@ const multer = require('multer');
 // Register function
 const registercoach = async (req, res) => {
   try {
-    // Check if all required files are present
+    
     if (!req.files || !req.files.image || !req.files.cv || !req.files.cin) {
-      return res.status(400).send({ error: 'All files (image, pdf1, pdf2) are required' });
+      return res.status(400).send({ error: 'All files (image, cv, cin) are required' });
     }
 
     const { fullname, email, password, gender, city, phone_number, address } = req.body;
@@ -133,19 +133,19 @@ const registercoach = async (req, res) => {
 // Login function
 logincoach = (req, res) => {
   const { email, password } = req.body;
-  // checking if coach doesnt exist
+  
   coach.findOne({ email })
     .then((coach) => {
       if (!coach) {
         return res.status(404).json({ message: "coach not found" });
       }
-      //comparing both password that is inputed and registered password
+      
       bcrypt
         .compare(password, coach.password)
         .then((isMatch) => {
           if (isMatch) {
             const payload = { id: coach.id, name: coach.name };
-            //giving coach a jwt token to the signin process of our coach
+            
             jwt.sign({ ...payload, role: coach.role }, "secret", { expiresIn: "7d" }, (err, token) => {
               if (err) {
                 return res
@@ -155,11 +155,11 @@ logincoach = (req, res) => {
               res.json({ success: true, token: "Bearer " + token });
             });
           } else {
-            // displaying that the has a wrong password
+            
             res.status(400).json({ message: "Email or Password are incorrect" });
           }
         })
-        // catching server errors
+        
         .catch((err) =>
           res
             .status(500)
@@ -207,23 +207,21 @@ logincoach = (req, res) => {
 
 // Forgot password function
 forgotPassword = (req, res) => {
-  //asking for the email of our and checking if it exists
+
   const { email } = req.body;
   User.findOne({ email })
     .then(async (user) => {
       if (!user) {
         return res.status(404).json({ err: "coach not found" });
       }
-      // asigning the user to userForget to be used later
+      
       const userForgot = user;
-      /* creating a variable that stores a function we import from another file.
-         this function contains 2 variables, our user's email and the reset link that ,
-         we will send to our user through the email   */
+
       const sendMailToUser = await sendMailUser({
         userEmail: email,
         resetLink: `http://localhost:${port}/reset/${userForgot._id}`,
       });
-      // catching errors, preferable if the we catch the outliar first
+     
       if (!sendMailToUser) {
         return res.status(500).json({
           err: "internal server error related to forgot password",
@@ -234,7 +232,7 @@ forgotPassword = (req, res) => {
         message: "we have sent you an email with a link to reset your password",
       });
     })
-    //catching any unwanted errors from the whole forgotPassword segmenet
+    
     .catch((err) => {
       console.error("Error in forgot password:", err);
       return res.status(500).json({ err: "Internal server error" });
@@ -287,25 +285,25 @@ forgotPassword = (req, res) => {
 resetPassword = async (req, res) => {
   try {
     const coachId = req.params.id;
-    // Ensuring that newPassword is present in the request body
+   
     const newPassword = req.body.newPassword;
-    // Checking if newPassword is undefined
+    
     if (!newPassword) {
       return res.status(400).json({ error: "New password is required" });
     }
-    // Check if the user with the provided ID exists
+    
     const coach = await coach.findById(coachId);
     if (!coach) {
       return res.status(404).json({ error: "coach not found" });
     }
 
-    // Update the user's password
+    
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(newPassword, salt);
     coach.password = hashedPassword;
     await coach.save();
 
-    // Return success message
+    
     return res.status(200).json({ message: "Password reset successfully" });
   } catch (error) {
     console.error("Error in resetting password:", error);

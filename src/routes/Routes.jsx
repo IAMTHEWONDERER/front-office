@@ -5,6 +5,7 @@ import AboutUs from "../pages/AboutUs";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Registercoach from "../pages/Registercoach";
+import Coachdash from '../pages/Coachdashboard';
 
 const Router = () => {
   return (
@@ -16,6 +17,7 @@ const Router = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/registercoach" element={<Registercoach />} />
+      <Route path="/coachdashboard" element={<Coachdash />} />
     </Routes>
   );
 };
