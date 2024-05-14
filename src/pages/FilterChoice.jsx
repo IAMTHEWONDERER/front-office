@@ -146,10 +146,10 @@ const FilterChoice = () => {
               <input
                 type="range"
                 min="0"
-                max="20"
+                max="200"
                 value={filters.distance}
                 onChange={(e) => setFilters({ ...filters, distance: parseInt(e.target.value) })}
-                className="w-full"
+                className="w-full text-red"
               />
               <p>Distance: {filters.distance} km</p>
             </>
