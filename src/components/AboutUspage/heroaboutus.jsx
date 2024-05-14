@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import aboutusimg from '../../imgs/ABOUTUSIMAGE.jpg';
 
 const Aboutushero = () => {
+
   const [scrollDownVisible, setScrollDownVisible] = useState(true);
 
   useEffect(() => {

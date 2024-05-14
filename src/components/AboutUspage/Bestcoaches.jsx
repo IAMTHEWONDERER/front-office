@@ -26,6 +26,7 @@ const testimonialData = [
 const Bestcoaches: React.FC = () => {
   const settings = {
     dots: false,
+
     arrows: false,
     infinite: true,
     speed: 500,
@@ -34,6 +35,7 @@ const Bestcoaches: React.FC = () => {
     autoplay: true,
     autoplaySpeed: 2000,
     cssEase: 'linear',
+
     pauseOnHover: true,
     pauseOnFocus: true,
     responsive: [
@@ -41,13 +43,15 @@ const Bestcoaches: React.FC = () => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 1,
+
         },
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 1
           arrows: true,
+
         },
       },
     ],
@@ -58,6 +62,7 @@ const Bestcoaches: React.FC = () => {
       <div className="container">
         <div className="text-center mb-8">
           <hr className="border-t-2 border-gray-300 w-1/2 mx-auto md:my-4" />
+
           <h1 className="text-5xl font-koulen">Our Best Coaches</h1>
         </div>
         <div className="max-w-screen-xl mx-auto relative">
@@ -75,6 +80,7 @@ const Bestcoaches: React.FC = () => {
                   <p className="text-gray-500 text-sm">{data.text}</p>
                   <h1 className="text-lg font-bold">{data.name}</h1>
                   <p className="text-7xl font-serif absolute top-0 right-0 text-black opacity-20">,,</p>
+
                 </div>
               </div>
             ))}

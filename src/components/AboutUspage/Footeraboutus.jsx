@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Footeraboutus = () => (
+
   <div className="h-60 flex flex-col items-center justify-center bg-black text-white p-4">
     <h1 className="text-2xl md:text-3xl text-center mb-2 md:mb-3 font-koulen">
       WHAT ARE YOU WAITING FOR?
@@ -20,3 +21,4 @@ const Footeraboutus = () => (
 );
 
 export default Footeraboutus;
+
