@@ -14,6 +14,7 @@ const Header = () => {
   const userInfo = useSelector((state) => state.auth.userInfo);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
+
   const handleLogout = () => {
     dispatch(logoutSuccess());
     navigate('/login');
@@ -151,6 +152,7 @@ const Header = () => {
           </div>
         )}
       </nav>
+
     </div>
   );
 };

@@ -23,9 +23,10 @@ const testimonialData = [
   },
 ];
 
-const Bestcoaches : React.FC = () => {
+const Bestcoaches: React.FC = () => {
   const settings = {
-    dots: false, 
+    dots: false,
+
     arrows: false,
     infinite: true,
     speed: 500,
@@ -33,20 +34,24 @@ const Bestcoaches : React.FC = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-    cssEase: "linear",
+    cssEase: 'linear',
+
     pauseOnHover: true,
     pauseOnFocus: true,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
+
         },
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 1
+          arrows: true,
+
         },
       },
     ],
@@ -56,7 +61,7 @@ const Bestcoaches : React.FC = () => {
     <div className="py-10">
       <div className="container">
         <div className="text-center mb-8">
-        <hr className="border-t-2 border-gray-300 w-1/2 mx-auto  md:my-4" />
+          <hr className="border-t-2 border-gray-300 w-1/2 mx-auto md:my-4" />
 
           <h1 className="text-5xl font-koulen">Our Best Coaches</h1>
         </div>
@@ -64,20 +69,27 @@ const Bestcoaches : React.FC = () => {
           <Slider {...settings}>
             {testimonialData.map((data) => (
               <div key={data.id} className="px-4">
-                <div className="flex flex-col justify-center items-center gap-4 text-center shadow-lg p-4 rounded-xl bg-gray-100 relative">
-                  <img className="rounded-full block mx-auto w-28 h-28 mb-4" src={data.img} alt={data.name} />
+                <div
+                  className="flex flex-col justify-center items-center gap-4 text-center shadow-lg p-4 rounded-xl bg-gray-100 relative"
+                >
+                  <img
+                    className="rounded-full block mx-auto w-28 h-28 mb-4"
+                    src={data.img}
+                    alt={data.name}
+                  />
                   <p className="text-gray-500 text-sm">{data.text}</p>
                   <h1 className="text-lg font-bold">{data.name}</h1>
-                  <p className="text-7xl  font-serif absolute top-0 right-0 text-black opacity-20">,,</p>
+                  <p className="text-7xl font-serif absolute top-0 right-0 text-black opacity-20">,,</p>
+
                 </div>
               </div>
             ))}
           </Slider>
-          
           <div className="flex mt-6 items-center justify-center space-x-2">
-            <button className="mr-8 md:text-lg bg-redd text-white px-3 md:px-4 py-1 md:py-2 font-koulen">SEE MORE</button>
+            <button className="mr-8 md:text-lg bg-redd text-white px-3 md:px-4 py-1 md:py-2 font-koulen">
+              SEE MORE
+            </button>
           </div>
-          
         </div>
       </div>
     </div>

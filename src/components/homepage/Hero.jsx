@@ -29,8 +29,7 @@ const Hero = () => {
         <h2 className="text-lg md:text-2xl mb-10">Your fitness journey starts here</h2>
         <button className="bg-red-700 hover:bg-red-900 text-white px-4 py-2 rounded transition duration-300 ease-in-out">
             Join Us Now
-          </button>
-        
+          </button>     
       </div>
     </div>  
   );

@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import ServicesPage from "../pages/ServicesPage";
 import AboutUs from "../pages/AboutUs";
+
 // import About from "../pages/about";
 // import Tour from "../pages/tour";
 // import Camping from "../pages/camping";
@@ -17,6 +18,9 @@ const Router = () => {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/home" element={<HomePage />} /> 
+
+      <Route path="/registercoach" element={<Registercoach />} />
+      <Route path="/coach/dashboard" element={<Coachdash />} />
       <Route path="/homepage" element={<HomePage />} /> 
       <Route path="/services" element={<ServicesPage />} />
       <Route path="/aboutus" element={<AboutUs />} />  

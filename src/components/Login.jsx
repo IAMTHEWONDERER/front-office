@@ -1,4 +1,5 @@
 
+
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -8,14 +9,15 @@ import Error from '../handlers/Error';
 import Spinner from '../handlers/Spinner';
 
 const Login = () => {
+
   const { loading, error, isAuthenticated } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
-  // Redirect to user dashboard if already logged in
   useEffect(() => {
+
     if (isAuthenticated) {
       navigate('/user-dashboard');
     }

@@ -17,16 +17,16 @@ const FooterGlobal = () => {
                   <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Information</h2>
                   <ul class="text-gray-500 dark:text-gray-400 font-medium">
                       <li class="mb-4">
-                          <a href="https://localhost:3000/" class="hover:underline">About</a>
+                          <a href="http://localhost:3000/about-us" class="hover:underline">About</a>
                       </li>
                       <li class="mb-4">
-                          <a href="https://localhost:3000/" class="hover:underline">Contact Us</a>
+                          <a href="http://localhost:3000/" class="hover:underline">Contact Us</a>
                       </li>
                       <li class="mb-4">
-                          <a href="https://localhost:3000/" class="hover:underline">Join Us</a>
+                          <a href="http://localhost:3000/" class="hover:underline">Join Us</a>
                       </li>
                       <li class="mb-4">
-                          <a href="https://localhost:3000/" class="hover:underline">Atlas Media</a>
+                          <a href="http://localhost:3000/" class="hover:underline">Atlas Media</a>
                       </li>
                   </ul>
               </div>
@@ -43,7 +43,7 @@ const FooterGlobal = () => {
                           <a href="https://facebook.com/" class="hover:underline">Facebook</a>
                       </li>
                       <li class="mb-4">
-                          <a href="https://instagram.com/" class="hover:underline">Instagram</a>
+                          <a href="https://instagram.com/hajji__ayman" class="hover:underline">Instagram</a>
                       </li>
                   </ul>
               </div>
