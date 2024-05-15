@@ -9,6 +9,9 @@ import UserDashboard from "../pages/UserDashboard";
 import NotFound from "../pages/NotFound";
 import FilterChoice from "../pages/FilterChoice";
 import Coachdash from "../pages/Coachdashboard";
+import Coachbookingdash from "../pages/Coachbookingdashboard";
+import Coachchatdash from "../pages/Coachchatdashboard";
+import Coachsettingsdash from "../pages/Coachsettingsdashboard";
 
 const Router = () => {
   return (
@@ -17,6 +20,9 @@ const Router = () => {
       <Route path="/home" element={<HomePage />} /> 
       <Route path="/registercoach" element={<Registercoach />} />
       <Route path="/coach/dashboard" element={<Coachdash />} />
+      <Route path="/coach/bookings" element={<Coachbookingdash />} />
+      <Route path="/coach/chats" element={<Coachchatdash />} />
+      <Route path="/coach/Settings" element={<Coachsettingsdash />} />
       <Route path="/homepage" element={<HomePage />} /> 
       <Route path="/services" element={<ServicesPage />} />
       <Route path="/aboutus" element={<AboutUs />} />  
