@@ -10,7 +10,9 @@ import Register from "../pages/Register";
 import UserDashboard from "../pages/UserDashboard";
 import NotFound from "../pages/NotFound";
 import FilterChoice from "../pages/FilterChoice";
+import CoachProfile from "../pages/CoachProfile";
 
+const id = 1;
 
 const Router = () => {
   return (
@@ -24,7 +26,8 @@ const Router = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/user-dashboard" element = {<UserDashboard/>}/>
       <Route path="*" element={<NotFound/>} />
-      <Route path="/find-a-coach" element ={<FilterChoice/>}/>
+      <Route path="/findacoach" element ={<FilterChoice/>}/>
+      <Route path={`/findacoach/profile/${id}`} element={<CoachProfile />} />   
     </Routes>
   );
 };
