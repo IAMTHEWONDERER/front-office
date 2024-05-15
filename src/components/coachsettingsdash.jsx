@@ -40,6 +40,41 @@ export default function Component() {
 </nav>
         </div> 
       </div>
+      <div className="w-full max-w-3xl mx-auto py-12 md:py-16">
+      <div className="space-y-6">
+        <h1 className="text-3xl font-bold">Settings</h1>
+        <div className="space-y-4">
+          <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="name" className="font-medium">Name</label>
+                <input type="text" placeholder="John Doe" id="name" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" />
+              </div>
+              <div>
+                <label htmlFor="email" className="font-medium">Email</label>
+                <input type="email" placeholder="john@example.com" id="email" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" />
+              </div>
+            </div>
+            <div>
+              <label htmlFor="bio" className="font-medium">Bio</label>
+              <textarea id="bio" rows={3} placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit." className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"></textarea>
+            </div>
+          </div>
+          <div className="space-y-4">
+            <div>
+              <label htmlFor="password" className="font-medium">Password</label>
+              <input type="password" id="password" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" />
+            </div>
+            <div>
+              <button id="delete-account" className="px-4 py-2 rounded-md bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-red-500">Delete Account</button>
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-end">
+          <button className="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-blue-500">Save Changes</button>
+        </div>
+      </div>
+    </div>
       </div>
       </div>
       </>
