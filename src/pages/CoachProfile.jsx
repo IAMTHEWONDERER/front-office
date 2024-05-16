@@ -1,6 +1,8 @@
 import React from 'react';
 
-const UserDashboard = () => {
+const CoachProfile = () => {
+  const rating = 2.5 ; // Example rating number
+
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-4 md:px-6">
@@ -14,27 +16,8 @@ const UserDashboard = () => {
           </div>
           <div className="space-y-6">
             <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1">
-              <div className="flex items-center">
-                  <div className="border border-red-600 p-1 rounded">
-                    <StarIcon className="w-6 h-6 fill-red-600" />
-                  </div>
-                  <div className="border border-red-600 p-1 rounded">
-                    <StarIcon className="w-6 h-6 fill-red-600" />
-                  </div>
-                  <div className="border border-red-600 p-1 rounded">
-                    <StarIcon className="w-6 h-6 fill-red-600" />
-                  </div>
-                  <div className="border border-red-600 p-1 rounded">
-                    <StarIcon className="w-6 h-6 fill-red-600" />
-                  </div>
-                  <div className="border border-gray-600 p-1 rounded">
-                    <StarIcon className="w-6 h-6 fill-gray-600" />
-                  </div>
-                </div>
-                </div>
-
-              <span className="text-lg font-medium">4.3</span>
+              <StarRating rating={rating} />
+              <span className="text-lg font-medium">{rating}</span>
             </div>
             <div>
               <h1 className="text-3xl font-bold">Sarah Johnson</h1>
@@ -197,23 +180,45 @@ const UserDashboard = () => {
   )
 }
 
-function StarIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-    </svg>
-  )
-}
+const StarIcon = ({ fill }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <defs>
+      <clipPath id="starClip">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+      </clipPath>
+    </defs>
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="#ccc" />
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill={fill} clipPath="url(#starClip)" />
+  </svg>
+);
 
-export default UserDashboard;
+  
+  const StarRating = ({ rating }) => {
+    const filledStars = Math.floor(rating);
+    const isHalfStar = rating % 1 !== 0;
+    const remainingStars = 5 - filledStars - (isHalfStar ? 1 : 0);
+    
+    return (
+      <div className="flex items-center">
+        {[...Array(filledStars)].map((_, index) => (
+          <StarIcon key={index} fill="#FFD700" />
+        ))}
+        {isHalfStar && <StarIcon key="half" fill="#FFD700" />}
+        {[...Array(remainingStars)].map((_, index) => (
+          <StarIcon key={`empty-${index}`} fill="#ccc" />
+        ))}
+      </div>
+    );
+  };
+  export default CoachProfile;
+  

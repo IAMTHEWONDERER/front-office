@@ -91,12 +91,16 @@ const Header = () => {
             </a>
             {!isAuthenticated && (
               <>
+                              <Link to="/becomeacoach">
                 <button className="px-4 py-2 bg-white hover:bg-gray-300 text-black rounded transition duration-300 ease-in-out">
                   Become a coach
                 </button>
+                </Link>
+                <Link to="/login">
                 <button className="bg-red-600 hover:bg-red-900 text-white px-4 py-2 rounded transition duration-300 ease-in-out">
                   Sign in
                 </button>
+                </Link>
               </>
             )}
             {isAuthenticated && (
