@@ -11,8 +11,8 @@ coachroutes.use(express.json());
 coachroutes.get('/getallcoaches', isAuthenticated, checkAdmin , coachcontrollers.getAllCoaches);
 coachroutes.get('/getcoach/:id', isAuthenticated, coachcontrollers.getCoachById);
 coachroutes.get('/filtercoach', isAuthenticated, checkUserAdmin , coachcontrollers.getCoachByFilter);
-coachroutes.put('/putcoach/:id', isAuthenticated, createCoachValidationRules(), validate , checkCoachAdmin , coachcontrollers.updateCoachById);
-coachroutes.delete('/deletecoach/:id', isAuthenticated, checkCoachAdmin , coachcontrollers.deleteCoachById);
+coachroutes.patch('/putcoach/:id',  coachcontrollers.updateCoachById);
+coachroutes.delete('/deletecoach/:id', coachcontrollers.deleteCoachById);
 
 
 module.exports = coachroutes ;

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import backimage from '../imgs/backregistercoach.jpg'
+import { useNavigate } from "react-router-dom";
 
 export default function Component() {
-
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullname: '',
     email: '',
@@ -65,6 +66,7 @@ export default function Component() {
         address: '',
         image: '',
       });
+      navigate('/login');
     } catch (error) {
       console.error('Error registering coach:', error);
     }

@@ -1,15 +1,99 @@
-import React  from "react";
+import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { IoIosLogOut } from "react-icons/io";
+import axios from 'axios';
+import {jwtDecode} from 'jwt-decode';
 
 export default function Component() {
 
   const navigate = useNavigate();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [bio, setBio] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleClose = () => {
-    // Delete token from local storage
-    localStorage.removeItem('token');
-    // Redirect to sign-in page
+  const [formData, setFormData] = useState({
+    fullname: '',
+    email: '',
+    password: '',
+    phone_number: '',
+    gender: '',
+    city: '',
+    address: '',
+    image: null,
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+    const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    // Ensure a file is selected
+    if (files && files.length > 0) {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: files[0],
+      }));
+    } else {
+      console.warn('No file selected for', name);
+    }
+  };
+  
+  const handleSaveChanges = async () => {
+    const token = localStorage.getItem('token');
+    const userId = token ? JSON.parse(atob(token.split('.')[1])).id : null;
+  
+    if (!userId) {
+      console.error('User ID not found in token');
+      return;
+    }
+  
+    try {
+      const response = await axios.put(`http://localhost:3111/coaches/putcoach/${userId}`, formData);
+      console.log(response.data); 
+      setFormData({
+        fullname: '',
+        email: '',
+        password: '',
+        phone_number: '',
+        gender: '',
+        city: '',
+        address: '',
+        image: null,
+      });
+    } catch (error) {
+      console.error('Error updating coach information:', error);
+    }
+  };  
+
+  const handleDeleteAccount = () => {
+  
+    const token = localStorage.getItem('token');
+    
+    const userId = token ? JSON.parse(atob(token.split('.')[1])).id : null;
+  
+    if (!userId) {
+      console.error('User ID not found in token');
+      return;
+    }
+  
+    axios.delete(`http://localhost:3111/coaches/deletecoach/${userId}`)
+      .then(response => {
+        console.log(response.data);
+        navigate("/registercoach"); 
+      })
+      .catch(error => {
+        console.error('Error deleting coach account:', error); 
+      });
+  };
+
+  const handleClose = () => {  
+    localStorage.removeItem('token');   
     navigate('/login');
   };
 
@@ -55,31 +139,41 @@ export default function Component() {
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label htmlFor="name" className="font-medium">Name</label>
-                <input type="text" placeholder="John Doe" id="name" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" />
+                <label htmlFor="fullname" className="font-medium">Name</label>
+                <input type="text" name='fullname' placeholder="John Doe" id="fullname" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" onChange={handleChange} />
               </div>
               <div>
                 <label htmlFor="email" className="font-medium">Email</label>
-                <input type="email" placeholder="john@example.com" id="email" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" />
+                <input type="email" name='email' placeholder="john@example.com" id="email" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" onChange={handleChange} />
+              </div>
+              <div>
+                <label htmlFor="city" className="font-medium">City</label>
+                <input type="text" name='city' id="city" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" onChange={handleChange} />
+              </div>
+              <div>
+                <label htmlFor="address" className="font-medium">Address</label>
+                <input type="text" name='address' id="address" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" onChange={handleChange} />
+              </div>
+              <div>
+                <label htmlFor="phone_number" className="font-medium">Phone Number</label>
+                <input type="number" name='phone_number' id="phone_number" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" onChange={handleChange} />
               </div>
             </div>
             <div>
               <label htmlFor="bio" className="font-medium">Bio</label>
-              <textarea id="bio" rows={3} placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit." className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"></textarea>
+              <textarea id="bio" name='bio' rows={3} placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit." className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" onChange={handleChange}></textarea>
             </div>
           </div>
           <div className="space-y-4">
             <div>
               <label htmlFor="password" className="font-medium">Password</label>
-              <input type="password" id="password" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" />
+              <input type="password" name="password" id="password" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" onChange={handleChange} />
             </div>
-            <div>
-              <button id="delete-account" className="bg-white-500 border-2 border-red-600 hover:bg-red-600 hover:text-white text-black font-bold py-2 px-4 rounded-full mr-6" >Delete Account</button>
+            <div className='flex justify-between'>
+              <button id="delete-account" className="bg-white-500 border-2 border-red-600 hover:bg-red-600 hover:text-white text-black font-bold py-2 px-4 rounded-full mr-6" onClick={handleDeleteAccount} >Delete Account</button>
+              <button className="bg-white-500 border-2 border-black hover:bg-black hover:text-white text-black font-bold py-2 px-4 rounded-full mr-6" onClick={handleSaveChanges} >Save Changes</button>        
             </div>
           </div>
-        </div>
-        <div className="flex justify-end">
-          <button className="bg-white-500 border-2 border-black hover:bg-black hover:text-white text-black font-bold py-2 px-4 rounded-full mr-6" >Save Changes</button>
         </div>
       </div>
     </div>
