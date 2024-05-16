@@ -2,15 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { IoIosLogOut } from "react-icons/io";
 import axios from 'axios';
-import {jwtDecode} from 'jwt-decode';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Component() {
 
   const navigate = useNavigate();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [bio, setBio] = useState('');
-  const [password, setPassword] = useState('');
+  const notifyMe = () => toast("Modification Successfully Saved");
 
   const [formData, setFormData] = useState({
     fullname: '',
@@ -33,7 +31,7 @@ export default function Component() {
 
     const handleFileChange = (e) => {
     const { name, files } = e.target;
-    // Ensure a file is selected
+    
     if (files && files.length > 0) {
       setFormData((prevData) => ({
         ...prevData,
@@ -54,7 +52,7 @@ export default function Component() {
     }
   
     try {
-      const response = await axios.put(`http://localhost:3111/coaches/putcoach/${userId}`, formData);
+      const response = await axios.patch(`http://localhost:3111/coaches/putcoach/${userId}`, formData);
       console.log(response.data); 
       setFormData({
         fullname: '',
@@ -66,10 +64,16 @@ export default function Component() {
         address: '',
         image: null,
       });
+
     } catch (error) {
       console.error('Error updating coach information:', error);
     }
   };  
+
+  const twoTasks = () => {
+    notifyMe();
+    handleSaveChanges();
+  }
 
   const handleDeleteAccount = () => {
   
@@ -171,15 +175,15 @@ export default function Component() {
             </div>
             <div className='flex justify-between'>
               <button id="delete-account" className="bg-white-500 border-2 border-red-600 hover:bg-red-600 hover:text-white text-black font-bold py-2 px-4 rounded-full mr-6" onClick={handleDeleteAccount} >Delete Account</button>
-              <button className="bg-white-500 border-2 border-black hover:bg-black hover:text-white text-black font-bold py-2 px-4 rounded-full mr-6" onClick={handleSaveChanges} >Save Changes</button>        
+              <button className="bg-white-500 border-2 border-black hover:bg-black hover:text-white text-black font-bold py-2 px-4 rounded-full mr-6" onClick={twoTasks} >Save Changes</button><ToastContainer />      
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-      </>
+</>
 )
 
 function BarChartIcon(props) {
