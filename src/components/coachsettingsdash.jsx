@@ -66,12 +66,12 @@ export default function Component() {
               <input type="password" id="password" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" />
             </div>
             <div>
-              <button id="delete-account" className="px-4 py-2 rounded-md bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-red-500">Delete Account</button>
+              <button id="delete-account" className="bg-white-500 border-2 border-red-600 hover:bg-red-600 hover:text-white text-black font-bold py-2 px-4 rounded-full mr-6">Delete Account</button>
             </div>
           </div>
         </div>
         <div className="flex justify-end">
-          <button className="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-blue-500">Save Changes</button>
+          <button className="bg-white-500 border-2 border-black hover:bg-black hover:text-white text-black font-bold py-2 px-4 rounded-full mr-6">Save Changes</button>
         </div>
       </div>
     </div>
