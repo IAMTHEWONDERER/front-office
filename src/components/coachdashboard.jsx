@@ -1,7 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { IoIosLogOut } from "react-icons/io";
+import {jwtDecode} from 'jwt-decode';
+import { Typography } from "@mui/material";
 
 export default function Component() {
+
+  const navigate = useNavigate();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [bio, setBio] = useState('');
+  const [password, setPassword] = useState('');
+  const [fullName, setFullName] = useState("");
+
+  const handleClose = () => {
+    // Delete token from local storage
+    localStorage.removeItem('token');
+    // Redirect to sign-in page
+    navigate('/login');
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      setFullName(decodedToken.fullname);
+    } else {
+      navigate("/login");
+    }
+}, [navigate]);
+
   return (
     <><br /><br /><br />
     <div className="bg-white min-h-screen text-black flex flex-col">
@@ -32,13 +60,13 @@ export default function Component() {
               </a>
               <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
               
-              <button type="button" className="flex ml-6 items-center justify-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-10 py-2.5 me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"><IoIosLogOut className="h-5 w-5 mr-2" /><span>LOG OUT</span></button>            
+              <button type="button" className="flex ml-6 items-center justify-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-10 py-2.5 me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900" onClick={handleClose}> <IoIosLogOut className="h-5 w-5 mr-2" /><span>LOG OUT</span></button>            
 </nav>
         </div> 
       </div>
         <div className="flex-1 p-6">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold">Hello David</h1>
+            <Typography fontSize={"30px"} variant="h6">Welcome, {fullName}</Typography>
           </div>
           <div className="grid grid-cols-3 mt-6 text-black">
             <div className="bg-white border-2 border-black p-4 rounded-lg">

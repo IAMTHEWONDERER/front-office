@@ -1,7 +1,18 @@
-import React from 'react';
+import React  from "react";
+import { useNavigate } from "react-router-dom";
 import { IoIosLogOut } from "react-icons/io";
 
 export default function Component() {
+
+  const navigate = useNavigate();
+
+  const handleClose = () => {
+    // Delete token from local storage
+    localStorage.removeItem('token');
+    // Redirect to sign-in page
+    navigate('/login');
+  };
+
   return (
     <><br /><br /><br />
     <div className="bg-white min-h-screen text-black flex flex-col">
@@ -33,7 +44,7 @@ export default function Component() {
               </a>
               <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
               
-              <button type="button" className="flex ml-6 items-center justify-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-10 py-2.5 me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"><IoIosLogOut className="h-5 w-5 mr-2" /><span>LOG OUT</span></button>            
+              <button type="button" className="flex ml-6 items-center justify-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-10 py-2.5 me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900" onClick={handleClose}><IoIosLogOut className="h-5 w-5 mr-2" /><span>LOG OUT</span></button>            
 </nav>
         </div> 
       </div>
@@ -63,19 +74,19 @@ export default function Component() {
               <input type="password" id="password" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" />
             </div>
             <div>
-              <button id="delete-account" className="bg-white-500 border-2 border-red-600 hover:bg-red-600 hover:text-white text-black font-bold py-2 px-4 rounded-full mr-6">Delete Account</button>
+              <button id="delete-account" className="bg-white-500 border-2 border-red-600 hover:bg-red-600 hover:text-white text-black font-bold py-2 px-4 rounded-full mr-6" >Delete Account</button>
             </div>
           </div>
         </div>
         <div className="flex justify-end">
-          <button className="bg-white-500 border-2 border-black hover:bg-black hover:text-white text-black font-bold py-2 px-4 rounded-full mr-6">Save Changes</button>
+          <button className="bg-white-500 border-2 border-black hover:bg-black hover:text-white text-black font-bold py-2 px-4 rounded-full mr-6" >Save Changes</button>
         </div>
       </div>
     </div>
   </div>
 </div>
       </>
-)}
+)
 
 function BarChartIcon(props) {
     return (
@@ -97,6 +108,7 @@ function BarChartIcon(props) {
       </svg>
     )
   }
+}
   
   function LayoutGridIcon(props) {
     return (

@@ -144,7 +144,7 @@ logincoach = (req, res) => {
         .compare(password, coach.password)
         .then((isMatch) => {
           if (isMatch) {
-            const payload = { id: coach.id, name: coach.name };
+            const payload = { id: coach.id, fullname: coach.fullname };
             
             jwt.sign({ ...payload, role: coach.role }, "secret", { expiresIn: "7d" }, (err, token) => {
               if (err) {
@@ -158,8 +158,7 @@ logincoach = (req, res) => {
             
             res.status(400).json({ message: "Email or Password are incorrect" });
           }
-        })
-        
+        })      
         .catch((err) =>
           res
             .status(500)

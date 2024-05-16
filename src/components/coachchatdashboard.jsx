@@ -1,7 +1,18 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import { IoIosLogOut } from "react-icons/io";
 
 export default function Component() {
+
+  const navigate = useNavigate();
+
+  const handleClose = () => {
+    // Delete token from local storage
+    localStorage.removeItem('token');
+    // Redirect to sign-in page
+    navigate('/login');
+  };
+
   return (
     <><br /><br /><br />
     <div className="bg-white min-h-screen text-black flex flex-col">
@@ -32,7 +43,7 @@ export default function Component() {
               </a>
               <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
               
-              <button type="button" className="flex ml-1 items-center justify-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-10 py-2.5 me-1 mb-2 "><IoIosLogOut className="h-5 w-5 mr-2" /><span>LOG OUT</span></button>            
+              <button type="button" className="flex ml-1 items-center justify-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-10 py-2.5 me-1 mb-2 " onClick={handleClose}><IoIosLogOut className="h-5 w-5 mr-2" /><span>LOG OUT</span></button>            
 </nav>
         </div> 
       </div>
