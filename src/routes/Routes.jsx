@@ -12,7 +12,6 @@ import Coachdash from "../pages/Coachdashboard";
 import Coachbookingdash from "../pages/Coachbookingdashboard";
 import Coachchatdash from "../pages/Coachchatdashboard";
 import Coachsettingsdash from "../pages/Coachsettingsdashboard";
-import Coachclientsdash from "../pages/Coachclientsdashboard";
 
 const Router = () => {
   return (
@@ -24,7 +23,6 @@ const Router = () => {
       <Route path="/coach/bookings" element={<Coachbookingdash />} />
       <Route path="/coach/chats" element={<Coachchatdash />} />
       <Route path="/coach/Settings" element={<Coachsettingsdash />} />
-      <Route path="/coach/clients" element={<Coachclientsdash />} />
       <Route path="/homepage" element={<HomePage />} /> 
       <Route path="/services" element={<ServicesPage />} />
       <Route path="/aboutus" element={<AboutUs />} />  

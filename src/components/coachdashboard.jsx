@@ -26,10 +26,6 @@ export default function Component() {
                 <MessageCircleIcon className="h-4 w-4" />
                 <span>Chats</span>
               </a>
-              <a className="flex  text-xl items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="clients">
-                <UsersIcon className="h-4 w-4" />
-                <span>Clients</span>
-              </a>
               <a className="flex  text-xl items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="Settings">
                   <SettingsIcon className="h-4 w-4" />
                   <span>Settings</span>

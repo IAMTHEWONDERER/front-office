@@ -26,10 +26,6 @@ export default function Component() {
                 <MessageCircleIcon className="h-4 w-4" />
                 <span>Chats</span>
               </a>
-              <a className="flex  text-xl items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="clients">
-                <UsersIcon className="h-4 w-4" />
-                <span>Clients</span>
-              </a>
               <a className="flex  text-xl items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="Settings">
                   <SettingsIcon className="h-4 w-4" />
                   <span>Settings</span>
@@ -52,8 +48,8 @@ export default function Component() {
 <div class="flex justify-center items-center">
   <div class="relative">
     <div class="flex items-center">
-      <input type="search" id="default-search" class="block p-2 w-full px-5 py-3 text-md text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Search ..."  />
-      <button type="submit" class="text-white absolute right-2 bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm p-2 px-3 dark:bg-blue-600  ">Search</button>
+      <input type="search" id="default-search" class="block p-2 w-full px-6 py-3 text-md text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Search ..."  />
+      <button type="submit" class="text-white absolute right-2 bg-black hover:bg-gray-800 font-medium rounded-lg text-sm p-2 px-4 ">Search</button>
     </div>
   </div>
 </div>
@@ -75,25 +71,67 @@ export default function Component() {
         <tr>
           <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-50">#12345</td>
           <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">$99.99</td>
-          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">Hotel</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">Online</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">2023-05-01</td>
+        </tr>
+        <tr>
+          <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-50">#12345</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">$99.99</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">Online</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">2023-05-01</td>
+        </tr>
+        <tr>
+          <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-50">#12345</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">$99.99</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">Online</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">2023-05-01</td>
+        </tr>
+        <tr>
+          <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-50">#12345</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">$99.99</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">Online</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">2023-05-01</td>
+        </tr>
+        <tr>
+          <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-50">#12345</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">$99.99</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">Online</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">2023-05-01</td>
+        </tr>
+        <tr>
+          <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-50">#12345</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">$99.99</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">Online</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">2023-05-01</td>
+        </tr>
+        <tr>
+          <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-50">#12345</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">$99.99</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">Online</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">2023-05-01</td>
+        </tr>
+        <tr>
+          <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-50">#12345</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">$99.99</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">Online</td>
           <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">2023-05-01</td>
         </tr>
         <tr>
           <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-50">#12346</td>
           <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">$199.99</td>
-          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">Flight</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">Online</td>
           <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">2023-05-15</td>
         </tr>
         <tr>
           <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-50">#12347</td>
           <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">$49.99</td>
-          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">Car Rental</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">Online</td>
           <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">2023-06-01</td>
         </tr>
         <tr>
           <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-50">#12348</td>
           <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">$299.99</td>
-          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">Package</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">Online</td>
           <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">2023-06-15</td>
         </tr>
       </tbody>

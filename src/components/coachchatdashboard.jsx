@@ -26,20 +26,97 @@ export default function Component() {
                 <MessageCircleIcon className="h-4 w-4" />
                 <span>Chats</span>
               </a>
-              <a className="flex  text-xl items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="clients">
-                <UsersIcon className="h-4 w-4" />
-                <span>Clients</span>
-              </a>
               <a className="flex  text-xl items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="Settings">
                   <SettingsIcon className="h-4 w-4" />
                   <span>Settings</span>
               </a>
               <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
               
-              <button type="button" className="flex ml-6 items-center justify-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-10 py-2.5 me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"><IoIosLogOut className="h-5 w-5 mr-2" /><span>LOG OUT</span></button>            
+              <button type="button" className="flex ml-1 items-center justify-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-10 py-2.5 me-1 mb-2 "><IoIosLogOut className="h-5 w-5 mr-2" /><span>LOG OUT</span></button>            
 </nav>
         </div> 
       </div>
+      <div className="flex h-screen w-full">
+      <div className="border-r bg-gray-100 mb-20 w-[300px] p-4 flex flex-col">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-bold mb-6">Clients</h2>
+        </div>
+        <div className="flex-1 overflow-auto">
+          <div className="space-y-2">
+            <button
+              className="w-full justify-start gap-3 text-left "
+              variant="ghost"
+            >
+              <div className="flex-1 mb-6">
+                <p className="font-medium">John Doe</p>
+              </div>
+              
+            </button>
+            <button
+              className="w-full justify-start gap-3 text-left "
+              variant="ghost"
+            >
+              <div className="flex-1 mt-1">
+                <p className="font-medium">Jane Smith</p>
+                
+              </div>
+              
+            </button>
+            <button
+              className="w-full justify-start gap-3 text-left "
+              variant="ghost"
+            >
+              <div className="flex-1 mt-6">
+                <p className="font-medium">Bob Johnson</p>
+                
+              </div>
+              
+            </button>
+            <button
+              className="w-full justify-start gap-3 text-left "
+              variant="ghost"
+            >
+              <div className="flex-1 mt-6">
+                <p className="font-medium">Sarah Lee</p>
+                
+              </div> 
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="flex-1 flex flex-col">
+        <div className="border-b bg-gray-100 dark:bg-gray-800 p-4 flex items-center justify-between">
+          <div className="flex items-center gap-3 mb-3 mt-3">
+            <div>
+              <p className="font-bold text-lg">John Doe</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex-1 overflow-auto p-4 space-y-4">
+          <div className="flex items-start gap-3">
+            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 max-w-[70%]">
+              <p>Hey, how's it going?</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">10:30 AM</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3 justify-end">
+            <div className="bg-primary rounded-lg p-3 text-gray-50 max-w-[70%]">
+              <p>I'm doing great, thanks for asking!</p>
+              <p className="text-xs text-gray-200 mt-1">10:31 AM</p>
+            </div>
+
+          </div>
+        </div>
+        <div className="border-t mb-20 bg-gray-100 p-5 flex items-center gap-3">
+          <input className="flex-1 p-2 mr-6" placeholder="Type your message..." />
+          <button>
+            <SendIcon className=" mr-6 h-5 w-5 scale-150 hover:text-green-600" />
+            <span className="sr-only">Send message</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
       </div>
       </div>
       </>
@@ -147,6 +224,48 @@ function BarChartIcon(props) {
         <circle cx="9" cy="7" r="4" />
         <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
         <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      </svg>
+    )
+  }
+  
+  
+  function SendIcon(props) {
+    return (
+      <svg
+        {...props}
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="m22 2-7 20-4-9-9-4Z" />
+        <path d="M22 2 11 13" />
+      </svg>
+    )
+  }
+  
+  
+  function VideoIcon(props) {
+    return (
+      <svg
+        {...props}
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5" />
+        <rect x="2" y="6" width="14" height="12" rx="2" />
       </svg>
     )
   }
