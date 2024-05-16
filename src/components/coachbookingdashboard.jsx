@@ -37,10 +37,71 @@ export default function Component() {
               <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
               
               <button type="button" className="flex ml-6 items-center justify-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-10 py-2.5 me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"><IoIosLogOut className="h-5 w-5 mr-2" /><span>LOG OUT</span></button>            
-</nav>
-        </div> 
-      </div>
-      </div>
+    </nav>
+  </div> 
+</div>
+
+<div className="mt-6 bg-white dark:bg-gray-950 rounded-lg shadow-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
+  <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-800">
+
+    <div>
+      <h2 className="text-lg font-semibold">Bookings</h2>
+  </div>
+<div>
+
+<div class="flex justify-center items-center">
+  <div class="relative">
+    <div class="flex items-center">
+      <input type="search" id="default-search" class="block p-2 w-full px-5 py-3 text-md text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Search ..."  />
+      <button type="submit" class="text-white absolute right-2 bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm p-2 px-3 dark:bg-blue-600  ">Search</button>
+    </div>
+  </div>
+</div>
+
+
+    </div>
+  </div>
+  <div className="overflow-x-auto">
+    <table className="w-full table-auto" style={{ minWidth: "1250px" }}>
+      <thead className="bg-gray-100 dark:bg-gray-800">
+        <tr>
+          <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 dark:text-gray-400">Client ID</th>
+          <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 dark:text-gray-400">Price</th>
+          <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 dark:text-gray-400">Booking Type</th>
+          <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 dark:text-gray-400">Booking Date</th>
+        </tr>
+      </thead>
+      <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
+        <tr>
+          <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-50">#12345</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">$99.99</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">Hotel</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">2023-05-01</td>
+        </tr>
+        <tr>
+          <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-50">#12346</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">$199.99</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">Flight</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">2023-05-15</td>
+        </tr>
+        <tr>
+          <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-50">#12347</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">$49.99</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">Car Rental</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">2023-06-01</td>
+        </tr>
+        <tr>
+          <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-50">#12348</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">$299.99</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">Package</td>
+          <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">2023-06-15</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+    </div>
       </div>
       </>
 )}
