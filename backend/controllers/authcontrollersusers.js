@@ -136,7 +136,7 @@ loginUser = (req, res) => {
         .compare(password, user.password)
         .then((isMatch) => {
           if (isMatch) {
-            const payload = { id: user.id, name: user.name };
+            const payload = { id: user.id, fullname: user.fullname };
             
             jwt.sign({ ...payload, role: user.role }, "secret", { expiresIn: "7d" }, (err, token) => {
               if (err) {
