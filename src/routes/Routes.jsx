@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import {Routes, Route, Switch } from 'react-router-dom';
 import HomePage from "../pages/HomePage";
 import ServicesPage from "../pages/ServicesPage";
 import AboutUs from "../pages/AboutUs";
@@ -11,6 +11,11 @@ import UserDashboard from "../pages/UserDashboard";
 import NotFound from "../pages/NotFound";
 import FilterChoice from "../pages/FilterChoice";
 import CoachProfile from "../pages/CoachProfile";
+import UserSettings from '../pages/Settings';
+import ProtectedRoute from '../components/ProtectedRoute';
+
+
+
 
 const id = 1;
 
@@ -28,6 +33,11 @@ const Router = () => {
       <Route path="*" element={<NotFound/>} />
       <Route path="/findacoach" element ={<FilterChoice/>}/>
       <Route path={`/findacoach/profile/${id}`} element={<CoachProfile />} />   
+      <Route path="/login" element={<Login />} />
+        <Route 
+          path="/user/settings" 
+          element={<ProtectedRoute element={<UserSettings />} />} 
+        />
     </Routes>
   );
 };
