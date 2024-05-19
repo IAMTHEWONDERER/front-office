@@ -49,9 +49,9 @@ const multer = require('multer');
 registerUser = async (req, res) => {
   try {
 
-    if (!req.file) {
-      return res.status(400).send({ error: 'User image is required' });
-    }
+    // if (!req.file) {
+    //   return res.status(400).send({ error: 'User image is required' });
+    // }
 
     const { fullname, email, password , gender } = req.body;
 
@@ -65,7 +65,7 @@ registerUser = async (req, res) => {
       email,
       password,
       gender,
-      image: req.file.filename,
+      // image: req.file.filename,
     });
     
     const salt = await bcrypt.genSalt(10);
