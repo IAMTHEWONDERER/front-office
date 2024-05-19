@@ -144,7 +144,7 @@ loginUser = (req, res) => {
                   .status(500)
                   .json({ message: "Failed to generate token", error: err });
               }
-              res.json({ success: true, token: "Bearer " + token });
+              res.json({ success: true, token: token });
             });
           } else {
             

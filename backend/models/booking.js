@@ -17,7 +17,7 @@ const bookingSchema = new Schema({
   },
   sessionType: {
     type: String,
-    enum: ['online', 'in-person'],
+    enum: ['online', 'In-person' , 'All-in-one'],
     required: true
   },
   price: {

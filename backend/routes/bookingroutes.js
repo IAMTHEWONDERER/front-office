@@ -6,7 +6,7 @@ const checkAdmin = require('../middlewares/checkAdmin');
 const checkUserAdmin = require('../middlewares/checkUserAdmin');
 const bookingrouter = express.Router();
 
-bookingrouter.post('/postbooking/:coach_id' , isAuthenticated,  bookingController.getCheckoutSession);
+bookingrouter.post('/postbooking/:coach_id' ,  bookingController.getCheckoutSession);
 bookingrouter.get('/bookings', isAuthenticated , checkAdmin , bookingController.getAllBookings);
 bookingrouter.get('/bookings/:id',isAuthenticated, checkUserAdmin , bookingController.getBookingById);
 bookingrouter.get('/bookingscoach/:id' , bookingController.getBookingsByUserId);

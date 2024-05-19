@@ -76,13 +76,15 @@ const getCheckoutSession = async (req,res) => {
     try{
 
         const coach = await Coach.findById(req.params.coach_id)      
-        const authHeader = req.headers.authorization;
-        if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return res.status(401).json({ error: 'Token is missing or invalid' });
+        const token = req.headers.authorization;
+        if (!token) {
+          return res.status(401).json({ error: 'Token is missing or invalid' });
         }
-
-        const token = authHeader.split(' ')[1];
+    
+        const tokenValue = token.split(' ')[1];
         const decoded = jwt.verify(token, 'secret');
+
+        console.log(decoded);
 
         const user = decoded.id;
 
@@ -90,7 +92,7 @@ const getCheckoutSession = async (req,res) => {
 
         const stripe = new Stripe(Stripe_Key);
 
-        const sessionType = req.body.session_type;
+        const sessionType = coach.availability;
 
         let location = '';
         if (sessionType === 'in-person') {
@@ -102,8 +104,8 @@ const getCheckoutSession = async (req,res) => {
         const session = await stripe.checkout.sessions.create({
             payment_method_types:['card'],
             mode:'payment',
-            success_url: 'http://localhost:3111/checkout-success' ,
-            cancel_url: 'http://localhost:3111/checkout-failed' ,
+            success_url: 'http://localhost:3000/checkout-success' ,
+            cancel_url: 'http://localhost:3000/checkout-failed' ,
             customer_email : user.email,
             client_reference_id : req.params.coach_id,
             line_items:[

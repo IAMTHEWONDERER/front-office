@@ -28,11 +28,14 @@ const Login = () => {
         body: JSON.stringify(data),       
       });
 
-      const userResult = await userResponse.json();
+      
 
       if (userResponse.ok) {
+        const userResult = await userResponse.json();
+        console.log('User login successful:', userResult);
+        const token = userResult.token;
+        localStorage.setItem('token', token);
         if (userResult.success) {
-          console.log('User login successful:', userResult);
           navigate('/user-dashboard');
           return; 
         } else {
@@ -56,7 +59,6 @@ const Login = () => {
         localStorage.setItem('token', token);
         navigate('/coach/dashboard');
         if (coachResult.success) {
-
           navigate('/coach/dashboard');
         } else {
           console.error('Login error:', 'Invalid login data');
