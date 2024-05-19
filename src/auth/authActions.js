@@ -27,9 +27,9 @@ export const userLogin = createAsyncThunk(
     } catch (error) {
       // return custom error message from API if any
       if (error.response && error.response.data.error_message) {
-        return rejectWithValue(error.response.data.error_message)
+        return rejectWithValue(error.response.data.error_message, "Invalid")
       } else {
-        return rejectWithValue(error.message)
+        return rejectWithValue(error.message , "super invalid")
       }
     }
   }
