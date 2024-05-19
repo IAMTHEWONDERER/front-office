@@ -62,7 +62,10 @@ const coachSchema = new Schema({
   },
 
   price: {
-  type: Number  
+    sessions_3: { type: Number, required: true },
+    sessions_6: { type: Number, required: true },
+    sessions_12: { type: Number, required: true },
+    sessions_24: { type: Number, required: true },
   },
 
   cv: {
