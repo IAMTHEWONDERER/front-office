@@ -17,8 +17,6 @@ import ProtectedRoute from '../components/ProtectedRoute';
 
 
 
-const id = 1;
-
 const Router = () => {
   return (
     <Routes>
@@ -26,13 +24,15 @@ const Router = () => {
       <Route path="/home" element={<HomePage />} /> 
       <Route path="/homepage" element={<HomePage />} /> 
       <Route path="/services" element={<ServicesPage />} />
+      <Route path="/user/services" element={<ServicesPage />} />
+      <Route path="/user/aboutus" element={<AboutUs />} />  
       <Route path="/aboutus" element={<AboutUs />} />  
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/user-dashboard" element = {<UserDashboard/>}/>
+      <Route path="/user/dashboard" element = {<UserDashboard/>}/>
       <Route path="*" element={<NotFound/>} />
       <Route path="/findacoach" element ={<FilterChoice/>}/>
-      <Route path={`/findacoach/profile/${id}`} element={<CoachProfile />} />   
+      <Route path={`/findacoach/profile`} element={<CoachProfile />} />   
       <Route path="/login" element={<Login />} />
         <Route 
           path="/user/settings" 
