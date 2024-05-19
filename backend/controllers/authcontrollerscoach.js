@@ -54,7 +54,7 @@ const registercoach = async (req, res) => {
       return res.status(400).send({ error: 'All files (image, cv, cin) are required' });
     }
 
-    const { fullname, email, password, gender, city, phone_number, address } = req.body;
+    const { fullname, email, password, gender, city, phone_number, address , availability } = req.body;
 
     const existingCoach = await coach.findOne({ email });
     if (existingCoach) {
@@ -72,6 +72,7 @@ const registercoach = async (req, res) => {
       image: req.files.image[0].filename,
       cin: req.files.cin[0].filename, 
       cv: req.files.cv[0].filename,
+      availability
     });
 
     const salt = await bcrypt.genSalt(10);

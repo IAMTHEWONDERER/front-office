@@ -75,7 +75,7 @@ const coachSchema = new Schema({
   
   availability: {
   type: String,
-  enum: ['online' , 'offline']
+  enum: ['online' , 'In-person' , 'All-in-one']
   }
 },
 
