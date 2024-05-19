@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const FilterChoice = () => {
   const [filters, setFilters] = useState({
@@ -9,28 +10,36 @@ const FilterChoice = () => {
     disableDistance: false,
     sortBy: 'default',
     displayFilter: 'grid',
+    availability: 'all',
   });
 
   const [coaches, setCoaches] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
+  const [locationError, setLocationError] = useState('');
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch user's geolocation information
     navigator.geolocation.getCurrentPosition(
       position => {
         const { latitude, longitude } = position.coords;
         setUserLocation({ latitude, longitude });
       },
       error => {
-        console.error('Error getting user location:', error);
+        if (error.code === 1) {
+          setLocationError('User denied Geolocation. Please enable location services in your browser settings.');
+        } else {
+          setLocationError('Error getting user location: ' + error.message);
+        }
       }
     );
   }, []);
+
   const fetchCoachesFromBackend = async () => {
     try {
       const response = await axios.get('http://localhost:3040/coaches/getallcoaches');
+      console.log('Fetched Coaches:', response.data);
       setCoaches(response.data);
-      console.log(response.data);
     } catch (error) {
       console.error('Error fetching coaches:', error);
     }
@@ -38,15 +47,15 @@ const FilterChoice = () => {
 
   useEffect(() => {
     fetchCoachesFromBackend();
-  }, []); // Fetch coaches on component mount
+  }, []);
 
   const handleDisableDistanceFilter = () => {
     setFilters({ ...filters, disableDistance: true, distance: 0 });
   };
 
   const calculateDistance = (latitude1, longitude1, latitude2, longitude2) => {
-    const R = 6371e3; // metres
-    const φ1 = (latitude1 * Math.PI) / 180; // φ, λ in radians
+    const R = 6371e3;
+    const φ1 = (latitude1 * Math.PI) / 180;
     const φ2 = (latitude2 * Math.PI) / 180;
     const Δφ = ((latitude2 - latitude1) * Math.PI) / 180;
     const Δλ = ((longitude2 - longitude1) * Math.PI) / 180;
@@ -56,22 +65,19 @@ const FilterChoice = () => {
       Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-    const distance = R * c; // in metres
-    return distance / 1000; // in kilometres
+    const distance = R * c;
+    return distance / 1000;
   };
 
   const filteredCoaches = coaches.filter(coach => {
-    // Filter by search text
     if (filters.search && !coach.fullname.toLowerCase().includes(filters.search.toLowerCase())) {
       return false;
-    } 
+    }
 
-    // Filter by price
     if (filters.price.length > 0 && !filters.price.includes(coach.price)) {
       return false;
     }
 
-    // Filter by distance
     if (filters.distance > 0 && userLocation) {
       const distance = calculateDistance(
         userLocation.latitude,
@@ -84,12 +90,21 @@ const FilterChoice = () => {
       }
     }
 
+    if (filters.availability !== 'all' && filters.availability !== coach.availability) {
+      return false;
+    }
+
     return true;
   });
 
   return (
     <div className="flex flex-col md:flex-row font-koulen">
       <div className="w-full md:w-1/4 p-4 mt-20 bg-gray-100 rounded-lg shadow-lg">
+        {locationError && (
+          <div className="mb-4 text-red-500">
+            <p>{locationError}</p>
+          </div>
+        )}
         <div className="mb-4">
           <h2 className="text-lg font-bold mb-2">Search</h2>
           <input
@@ -146,29 +161,46 @@ const FilterChoice = () => {
             <option value="distance">Distance</option>
           </select>
         </div>
+        <div className="mb-4">
+          <h2 className="text-lg font-bold mb-2">Type of Service</h2>
+          <select
+            value={filters.availability}
+            onChange={(e) => setFilters({ ...filters, availability: e.target.value })}
+            className="w-full border border-gray-300 p-2 rounded-lg"
+          >
+            <option value="all">Show All</option>
+            <option value="all-in-one">All-in-one</option>
+            <option value="online">online</option>
+            <option value="in person">In person</option>
+          </select>
+        </div>
       </div>
-
-      <div className="w-full md:w-3/4 p-4 flex flex-wrap mt-20">
-        {filteredCoaches.map(coach => (
-          <div key={coach.email} className="w-full md:w-1/2 p-2">
-            <div className="bg-white rounded-lg shadow-lg p-4">
-              <img src={coach.image} alt={coach.fullname} className="w-full h-40 object-cover mb-2" />
-              
-              <h3 className="text-lg font-bold mb-1">{coach.fullname}</h3>
-              <p className="text-gray-600 mb-1">Price: {coach.price} Dh </p>
-              <p className="text-gray-600 mb-1">Distance: {userLocation ? calculateDistance(userLocation.latitude, userLocation.longitude, coach.latitude, coach.longitude).toFixed(2) : 'Unknown'} km</p>
+      <div className={`w-full ${filters.displayFilter === 'grid' ? 'md:w-3/4' : 'md:w-full'} p-4 mt-20`}>
+        <div className={`grid grid-cols-1 ${filters.displayFilter === 'grid' ? 'md:grid-cols-2 lg:grid-cols-3' : ''} gap-4`}>
+          {filteredCoaches.map(coach => (
+            <div key={coach._id} className="bg-white p-4 rounded-lg shadow-lg">
+              <h3 className="text-lg font-bold mb-2">{coach.fullname}</h3>
+              <p className="mb-2">{coach.city}</p>
+              <p className="mb-2">Price: {coach.price} Dh</p>
+              <p className="mb-2">Availability: {coach.availability}</p>
               <div className='flex justify-center items-center'>
-              <button className="bg-black text-white px-4 py-2 rounded mr-4 hover:bg-gray-900 transition duration-300 ease-in-out">Book Now</button>
-              <button className="bg-red-600 hover:bg-red-900 text-white px-4 py-2 rounded transition duration-300 ease-in-out">View Profile</button>
+                <button className="bg-black text-white px-4 py-2 rounded mr-4 hover:bg-gray-900 transition duration-300 ease-in-out">Book Now</button>
+                <button
+                  onClick={() => {
+                    console.log('Navigating to coach profile with ID:', coach._id); // Log the ID
+                    navigate(`/coach/${coach._id}`);
+                  }}
+                  className="bg-red-600 hover:bg-red-900 text-white px-4 py-2 rounded transition duration-300 ease-in-out"
+                >
+                  View Profile
+                </button>
               </div>
-            
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
 export default FilterChoice;
-

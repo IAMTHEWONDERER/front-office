@@ -32,7 +32,7 @@ const Router = () => {
       <Route path="/user/dashboard" element = {<UserDashboard/>}/>
       <Route path="*" element={<NotFound/>} />
       <Route path="/findacoach" element ={<FilterChoice/>}/>
-      <Route path={`/findacoach/profile`} element={<CoachProfile />} />   
+      <Route path={`coach/:id`} element={<CoachProfile />} />   
       <Route path="/login" element={<Login />} />
         <Route 
           path="/user/settings" 
