@@ -40,7 +40,14 @@ const coachSchema = new Schema({
   },
 
   image: {
-  type: String
+    public_id: {
+      type: String,
+      required: true
+    },
+    url: {
+      type: String,
+      required: true
+    },
   },
 
   flag_system: {

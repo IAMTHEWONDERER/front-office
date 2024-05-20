@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const sendMailUser = require("../services/emailservice");
 const multer = require('multer');
+const cloudinary = require('../utils/cloudinary');
 
 /**
  * @swagger
@@ -49,13 +50,11 @@ const multer = require('multer');
 // Register function
 const registercoach = async (req, res) => {
   try {
-    
-    if (!req.files || !req.files.image || !req.files.cv || !req.files.cin) {
-      return res.status(400).send({ error: 'All files (image, cv, cin) are required' });
-    }
+    const { fullname, email, password, gender, city, phone_number, address, availability } = req.body;
 
-    let session_3 , session_6 , session_9 , session_12 , session_24 ;
-    const { fullname, email, password, gender, city, phone_number, address , availability } = req.body;
+    if (!req.files || !req.files.image || !req.files.cv || !req.files.cin) {
+      return res.status(400).json({ error: 'All files (image, cv, cin) are required' });
+    }
 
     const existingCoach = await coach.findOne({ email });
     if (existingCoach) {
@@ -65,32 +64,21 @@ const registercoach = async (req, res) => {
     let price;
     switch (availability) {
       case 'online':
-        price = {
-          sessions_3: 417,
-          sessions_6: 774,
-          sessions_12: 1428,
-          sessions_24: 2616,
-        };
+        price = { sessions_3: 417, sessions_6: 774, sessions_12: 1428, sessions_24: 2616 };
         break;
       case 'All-in-one':
-        price = {
-          sessions_3: 507,
-          sessions_6: 954,
-          sessions_12: 1788,
-          sessions_24: 3348,
-        };
+        price = { sessions_3: 507, sessions_6: 954, sessions_12: 1788, sessions_24: 3348 };
         break;
       case 'In-person':
-        price = {
-          sessions_3: 477,
-          sessions_6: 894,
-          sessions_12: 1668,
-          sessions_24: 3000,
-        };
+        price = { sessions_3: 477, sessions_6: 894, sessions_12: 1668, sessions_24: 3000 };
         break;
       default:
         return res.status(400).json({ error: 'Invalid availability type' });
     }
+
+    const imageResult = await cloudinary.uploader.upload(req.files.image[0].path, { folder: "coachesimages" });
+    const cvResult = await cloudinary.uploader.upload(req.files.cv[0].path, { folder: "coachescv" });
+    const cinResult = await cloudinary.uploader.upload(req.files.cin[0].path, { folder: "coachescin" });
 
     const newCoach = new coach({
       fullname,
@@ -100,11 +88,11 @@ const registercoach = async (req, res) => {
       city,
       address,
       phone_number,
-      image: req.files.image[0].filename,
-      cin: req.files.cin[0].filename, 
-      cv: req.files.cv[0].filename,
+      image: { public_id: imageResult.public_id, url: imageResult.secure_url },
+      cv: { public_id: cvResult.public_id, url: cvResult.secure_url },
+      cin: { public_id: cinResult.public_id, url: cinResult.secure_url },
       availability,
-      price ,
+      price,
     });
 
     const salt = await bcrypt.genSalt(10);

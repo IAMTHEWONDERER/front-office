@@ -2,17 +2,15 @@ const multer = require('multer');
 const { v2: cloudinary } = require('cloudinary');
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: "Kit9_mwV_F7ptN5damkDCJHBGgY",
-});
-
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: 'coaches',
+    format: async (req, file) => 'pdf', // supports promises as well
+    public_id: (req, file) => Date.now() + '-' + file.originalname,
   },
 });
 
-module.exports = multer({ storage: storage });
+const parser = multer({ storage: storage });
+
+module.exports = parser;
