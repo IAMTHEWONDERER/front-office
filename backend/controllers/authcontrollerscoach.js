@@ -54,11 +54,42 @@ const registercoach = async (req, res) => {
       return res.status(400).send({ error: 'All files (image, cv, cin) are required' });
     }
 
-    const { fullname, email, password, gender, city, phone_number, address } = req.body;
+    let session_3 , session_6 , session_9 , session_12 , session_24 ;
+    const { fullname, email, password, gender, city, phone_number, address , availability } = req.body;
 
     const existingCoach = await coach.findOne({ email });
     if (existingCoach) {
       return res.status(400).json({ error: 'Coach already exists' });
+    }
+
+    let price;
+    switch (availability) {
+      case 'online':
+        price = {
+          sessions_3: 417,
+          sessions_6: 774,
+          sessions_12: 1428,
+          sessions_24: 2616,
+        };
+        break;
+      case 'All-in-one':
+        price = {
+          sessions_3: 507,
+          sessions_6: 954,
+          sessions_12: 1788,
+          sessions_24: 3348,
+        };
+        break;
+      case 'In-person':
+        price = {
+          sessions_3: 477,
+          sessions_6: 894,
+          sessions_12: 1668,
+          sessions_24: 3000,
+        };
+        break;
+      default:
+        return res.status(400).json({ error: 'Invalid availability type' });
     }
 
     const newCoach = new coach({
@@ -72,6 +103,8 @@ const registercoach = async (req, res) => {
       image: req.files.image[0].filename,
       cin: req.files.cin[0].filename, 
       cv: req.files.cv[0].filename,
+      availability,
+      price ,
     });
 
     const salt = await bcrypt.genSalt(10);
@@ -144,7 +177,7 @@ logincoach = (req, res) => {
         .compare(password, coach.password)
         .then((isMatch) => {
           if (isMatch) {
-            const payload = { id: coach.id, name: coach.name };
+            const payload = { id: coach.id, fullname: coach.fullname };
             
             jwt.sign({ ...payload, role: coach.role }, "secret", { expiresIn: "7d" }, (err, token) => {
               if (err) {
@@ -158,8 +191,7 @@ logincoach = (req, res) => {
             
             res.status(400).json({ message: "Email or Password are incorrect" });
           }
-        })
-        
+        })      
         .catch((err) =>
           res
             .status(500)

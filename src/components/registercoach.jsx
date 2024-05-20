@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import backimage from '../imgs/backregistercoach.jpg'
+import { useNavigate } from "react-router-dom";
 
 export default function Component() {
-
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullname: '',
     email: '',
@@ -65,6 +66,7 @@ export default function Component() {
         address: '',
         image: '',
       });
+      navigate('/login');
     } catch (error) {
       console.error('Error registering coach:', error);
     }
@@ -169,6 +171,27 @@ export default function Component() {
                 </select>
               </div>
             </div>
+            <div>
+              <label className="block text-lg font-medium text-white" htmlFor="availability">
+                Availability
+              </label>
+              <div className="mt-1">
+                <select
+                  className="block w-full appearance-none rounded-md border border-gray-300 px-2 py-1 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] text-lg"
+                  id="availability"
+                  name="availability"
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Select Availability</option>
+                  <option value="online">online</option>
+                  <option value="In-person">In-person</option>
+                  <option value="All-in-one">All-in-one</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 gap-4">
             <div>
               <label className="block text-lg font-medium text-white" htmlFor="address">
                 Address

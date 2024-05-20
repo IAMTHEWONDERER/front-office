@@ -3,9 +3,9 @@ import logo from "../imgs/Atlas-white.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutSuccess } from '../auth/authSlice';
-import { FaUserCircle } from 'react-icons/fa'; // Import UserCircle icon
-import { RiDashboardLine } from 'react-icons/ri'; // Import Dashboard icon
-import { MdSettings, MdExitToApp } from 'react-icons/md'; // Import Home and ExitToApp icons
+import { FaUserCircle } from 'react-icons/fa'; 
+import { RiDashboardLine } from 'react-icons/ri'; 
+import { MdSettings, MdExitToApp } from 'react-icons/md'; 
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +13,6 @@ const Header = () => {
   const navigate = useNavigate();
   const userInfo = useSelector((state) => state.auth.userInfo);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
 
   const handleLogout = () => {
     dispatch(logoutSuccess());
@@ -40,10 +39,12 @@ const Header = () => {
           </a>
           {!isAuthenticated && (
             <>
+            <Link to="/registercoach">
               <button className="px-4 py-2 bg-white hover:bg-gray-300 text-black rounded transition duration-300 ease-in-out">
                 Become a coach
               </button>
-              <Link to="/login">
+            </Link>
+            <Link to="/login">
                 <button className="bg-red-600 hover:bg-red-900 text-white px-4 py-2 rounded transition duration-300 ease-in-out">
                   Sign in
                 </button>
@@ -93,15 +94,15 @@ const Header = () => {
             </a>
             {!isAuthenticated && (
               <>
-                <Link to="/becomeacoach">
-                  <button className="px-4 py-2 bg-white hover:bg-gray-300 text-black rounded transition duration-300 ease-in-out">
-                    Become a coach
-                  </button>
+            <Link to="/registercoach">
+                <button className="px-4 py-2 bg-white hover:bg-gray-300 text-black rounded transition duration-300 ease-in-out">
+                  Become a coach
+                </button>
                 </Link>
                 <Link to="/login">
-                  <button className="bg-red-600 hover:bg-red-900 text-white px-4 py-2 rounded transition duration-300 ease-in-out">
-                    Sign in
-                  </button>
+                <button className="bg-red-600 hover:bg-red-900 text-white px-4 py-2 rounded transition duration-300 ease-in-out">
+                  Sign in
+                </button>
                 </Link>
               </>
             )}
@@ -156,10 +157,9 @@ const Header = () => {
           </div>
         )}
       </nav>
-
     </div>
   );
 };
 
+
 export default Header;
-  

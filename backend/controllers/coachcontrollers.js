@@ -228,19 +228,30 @@ const updateCoachById = async (req, res) => {
             return res.status(404).json({ message: 'Coach not found' });
         }
 
-        if (req.body.password) {
-            req.body.password = await bcrypt.hash(req.body.password, 10);
+        const updates = { ...req.body };
+
+        // Remove any empty fields from updates
+        Object.keys(updates).forEach(key => {
+            if (updates[key] === '' || updates[key] == null) {
+                delete updates[key];
+            }
+        });
+
+        if (updates.password) {
+            updates.password = await bcrypt.hash(updates.password, 10);
         }
 
-        const coach = await Coach.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        const coach = await Coach.findByIdAndUpdate(req.params.id, updates, { new: true });
         if (!coach) {
-        return res.status(404).json({ message: 'Coach not found' });
+            return res.status(404).json({ message: 'Coach not found' });
         }
-        res.status(200).json({ message: 'Coach modified successfully'});
+
+        res.status(200).json({ message: 'Coach modified successfully', coach });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 };
+
 
 /**
  * @swagger

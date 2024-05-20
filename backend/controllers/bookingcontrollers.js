@@ -76,18 +76,24 @@ const getCheckoutSession = async (req,res) => {
     try{
 
         const coach = await Coach.findById(req.params.coach_id)      
-        const authHeader = req.headers.authorization;
-        if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return res.status(401).json({ error: 'Token is missing or invalid' });
+        const token = req.headers.authorization;
+        if (!token) {
+          return res.status(401).json({ error: 'Token is missing or invalid' });
         }
-
-        const token = authHeader.split(' ')[1];
+    
+        const tokenValue = token.split(' ')[1];
         const decoded = jwt.verify(token, 'secret');
 
-        const user = decoded.id;  
+        console.log(decoded);
+
+        const user = decoded.id;
+
+        const userName = decoded.fullname;
+
         const stripe = new Stripe(Stripe_Key);
 
-        const sessionType = req.body.session_type;
+        const sessionType = coach.availability;
+
         let location = '';
         if (sessionType === 'in-person') {
             location = user.location ;
@@ -98,15 +104,15 @@ const getCheckoutSession = async (req,res) => {
         const session = await stripe.checkout.sessions.create({
             payment_method_types:['card'],
             mode:'payment',
-            success_url: 'http://localhost:3111/checkout-success' ,
-            cancel_url: 'http://localhost:3111/checkout-failed' ,
+            success_url: 'http://localhost:3000/checkout-success' ,
+            cancel_url: 'http://localhost:3000/checkout-failed' ,
             customer_email : user.email,
             client_reference_id : req.params.coach_id,
             line_items:[
                 {
                     price_data :{
                         currency: "USD",
-                        unit_amount: coach.price * 100,
+                        unit_amount: 500,
                         product_data : {
                             name : coach.fullname,
                             description : coach.bio,
@@ -116,12 +122,12 @@ const getCheckoutSession = async (req,res) => {
                     quantity : 1
                 }
             ]
-        }) 
+        })
 
         const booking = new Booking({
             coach_id: coach._id,
-            user_id: user,
-            price: coach.price,
+            username: userName,
+            price: 5,
             session: session.id,
             sessionType,
             location
@@ -291,6 +297,23 @@ const getBookingById = async (req, res) => {
         res.status(500).json({ success: false, error: 'Failed to update booking' });
     }
 };
+
+const getBookingsByUserId = async (req, res) => {
+    try {
+        const coachId = req.params.id;
+        const bookings = await Booking.find({ coach_id: coachId });
+
+        if (!bookings.length) {
+            return res.status(404).json({ success: false, error: 'No bookings found for this user' });
+        }
+
+        res.status(200).json({ success: true, bookings });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, error: 'Failed to get bookings' });
+    }
+};
+
 
 /**
  * @swagger
@@ -471,5 +494,6 @@ module.exports = {
     deleteBooking,
     updateBooking,
     getAllBookings,
-    getBookingById
+    getBookingById,
+    getBookingsByUserId
 }
