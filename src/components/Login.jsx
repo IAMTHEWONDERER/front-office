@@ -13,8 +13,9 @@ const Login = () => {
   const { register, handleSubmit } = useForm();
 
   useEffect(() => {
+
     if (userInfo) {
-      navigate('/user-dashboard')
+      navigate('/homepage');
     }
   }, [navigate, userInfo])
 

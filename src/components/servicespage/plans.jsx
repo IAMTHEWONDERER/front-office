@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import {Link} from 'react-router-dom';
 export default function Component() {
   const [selectedPlan, setSelectedPlan] = useState('');
   const [sessionPrices, setSessionPrices] = useState({
@@ -45,7 +45,7 @@ export default function Component() {
   };
 
   return (
-<div className='ml-4 mr-4 md:ml-12 md:mr-12 mt-6 rounded-full overflow-hidden ' style={{ borderRadius: '30px' }}>
+<div className='ml-4 mr-4 md:ml-12 md:mr-12 mt-6 rounded-full overflow-hidden ' style={{ borderRadius: '5px' }}>
   <div className="bg-red-800 rounded-lg overflow-hidden pl-4 md:pl-9 pr-4 md:pr-19 pb-8 md:pb-16 pt-6 md:pt-10 text-white" >
     <div className="text-center">
       <h1 className="text-3xl md:text-5xl font-koulen uppercase">Choose your plan</h1>
@@ -103,7 +103,9 @@ export default function Component() {
           <p className="text-sm">per session</p>
           <p className="text-lg mt-2 md:mt-4 font-koulen">Total Price:</p>
           <p className="text-lg md:text-2xl font-koulen">{sessionPrices[key].total}DH</p>
-          <button className="font-koulen text-lg md:text-2xl mt-4 mb-6 bg-black text-white rounded-full px-6 py-5 hover:text-black hover:bg-gray-300 transition-colors">Choose Plan</button>
+          <Link to="/findacoach">
+          <button className="font-koulen text-lg md:text-2xl mt-4 mb-6 bg-black text-white rounded-lg px-6 py-5 hover:text-black hover:bg-gray-300 transition-colors">Choose Plan</button>
+          </Link>
         </div>  
       ))}
     </div>

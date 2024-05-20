@@ -19,6 +19,8 @@ const Header = () => {
     navigate('/login');
   };
 
+  const dashboardLink = userInfo?.isCoach ? '/coach/dashboard' : '/user/dashboard';
+
   return (
     <div>
       <nav className="bg-black backdrop-blur-sm bg-opacity-70 text-white pt-4 pr-4 pb-4 flex items-center justify-between font-koulen">
@@ -106,23 +108,22 @@ const Header = () => {
             )}
             {isAuthenticated && (
               <>
-              
-              <Link to="/user/dashboard" >
-              <a >
-                 Dashboard
-              </a>
-              </Link>
-              <Link to="/user/settings" >
-              <a >
-                Settings
-              </a>
-              </Link>
-              <button
-                onClick={handleLogout}
-                className="px-4 py-2 bg-white hover:bg-gray-300 text-black rounded transition duration-300 ease-in-out"
-              >
-                Log out
-              </button>
+                <Link to={dashboardLink}>
+                  <button className="px-4 py-2 bg-white hover:bg-gray-300 text-black rounded transition duration-300 ease-in-out">
+                    Dashboard
+                  </button>
+                </Link>
+                <Link to="/user/settings">
+                  <button className="px-4 py-2 bg-white hover:bg-gray-300 text-black rounded transition duration-300 ease-in-out">
+                    Settings
+                  </button>
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="px-4 py-2 bg-white hover:bg-gray-300 text-black rounded transition duration-300 ease-in-out"
+                >
+                  Log out
+                </button>
               </>
             )}
           </div>
@@ -138,7 +139,7 @@ const Header = () => {
               </button>
               {isOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10">
-                  <Link to="/user-dashboard" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 flex items-center">
+                  <Link to={dashboardLink} className="block px-4 py-2 text-gray-800 hover:bg-gray-200 flex items-center">
                     <RiDashboardLine className="mr-2" /> Dashboard
                   </Link>
                   <Link to="/user/settings" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 flex items-center">
@@ -150,7 +151,6 @@ const Header = () => {
                   >
                     <MdExitToApp className="mr-2" /> Logout
                   </button>
-                  
                 </div>
               )}
             </div>
@@ -160,5 +160,6 @@ const Header = () => {
     </div>
   );
 };
+
 
 export default Header;
