@@ -37,7 +37,7 @@ const Login = () => {
         const token = userResult.token;
         localStorage.setItem('token', token);
         if (userResult.success) {
-          navigate('/user-dashboard');
+          navigate('/user/dashboard');
           return; 
         } else {
           console.error('Login error:', 'Invalid login data');

@@ -84,8 +84,6 @@ const getCheckoutSession = async (req,res) => {
         const tokenValue = token.split(' ')[1];
         const decoded = jwt.verify(token, 'secret');
 
-        console.log(decoded);
-
         const user = decoded.id;
 
         const userName = decoded.fullname;
@@ -116,7 +114,6 @@ const getCheckoutSession = async (req,res) => {
                         product_data : {
                             name : coach.fullname,
                             description : coach.bio,
-
                         }
                     },
                     quantity : 1

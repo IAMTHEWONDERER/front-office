@@ -37,7 +37,7 @@ const FilterChoice = () => {
 
   const fetchCoachesFromBackend = async () => {
     try {
-      const response = await axios.get('http://localhost:3040/coaches/getallcoaches');
+      const response = await axios.get('http://localhost:3111/coaches/getallcoaches');
       console.log('Fetched Coaches:', response.data);
       setCoaches(response.data);
     } catch (error) {
@@ -183,7 +183,16 @@ const FilterChoice = () => {
               <p className="mb-2">{coach.city}</p>
               <p className="mb-2">Price: {coach.price} Dh</p>
               <p className="mb-2">Availability: {coach.availability}</p>
-              <div className='flex justify-center items-center'>
+              <div className="mb-2">
+                {coach.sessions && typeof coach.sessions === 'object' ? (
+                  Object.entries(coach.sessions).map(([key, value]) => (
+                    <p key={key}>{`${key}: ${value}`}</p>
+                  ))
+                ) : (
+                  <p>No sessions available</p>
+                )}
+              </div>
+              <div className="flex justify-center items-center">
                 <button className="bg-black text-white px-4 py-2 rounded mr-4 hover:bg-gray-900 transition duration-300 ease-in-out">Book Now</button>
                 <button
                   onClick={() => {

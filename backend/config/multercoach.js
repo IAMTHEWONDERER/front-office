@@ -1,31 +1,18 @@
-const multer = require("multer");
-const fs = require('fs');
-const path = require('path');
+const multer = require('multer');
+const { v2: cloudinary } = require('cloudinary');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {       
-        let folder;
-        switch (file.fieldname) {
-            case 'image':
-                folder = 'image';
-                break;
-            case 'cin':
-                folder = 'cin';
-                break;
-            case 'cv':
-                folder = 'cv';
-                break;
-            default:
-                folder = '';
-        }     
-        const uploadPath = path.join('uploads', folder);
-        fs.mkdirSync(uploadPath, { recursive: true });
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: "Kit9_mwV_F7ptN5damkDCJHBGgY",
+});
 
-        cb(null, uploadPath);
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + "-" + file.originalname); 
-    },
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'coaches',
+  },
 });
 
 module.exports = multer({ storage: storage });

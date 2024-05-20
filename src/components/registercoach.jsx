@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import backimage from '../imgs/backregistercoach.jpg'
+import backimage from '../imgs/backregistercoach.jpg';
 import { useNavigate } from "react-router-dom";
 
-export default function Component() {
+export default function RegisterCoach() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullname: '',
@@ -13,7 +13,9 @@ export default function Component() {
     gender: '',
     city: '',
     address: '',
+    cv: null,
     image: null,
+    cin: null,
   });
 
   const handleChange = (e) => {
@@ -26,7 +28,6 @@ export default function Component() {
 
   const handleFileChange = (e) => {
     const { name, files } = e.target;
-    // Ensure a file is selected
     if (files && files.length > 0) {
       setFormData((prevData) => ({
         ...prevData,
@@ -54,23 +55,20 @@ export default function Component() {
           },
         }
       );
-      console.log(response.data);
-
-      setFormData({
-        fullname: '',
-        email: '',
-        password: '',
-        phone_number: '',
-        gender: '',
-        city: '',
-        address: '',
-        image: '',
-      });
-      navigate('/login');
+      navigate("/login");
     } catch (error) {
       console.error('Error registering coach:', error);
     }
   };
+
+const handleUploadSuccess = (url, id, type) => {
+  console.log("cloudinary url returned", url);
+  const fileData = { url: url, cloudinaryId: id };
+  setFormData((prevData) => ({
+    ...prevData,
+    [type]: fileData,
+  }));
+};
 
   const backgroundStyle = {
     backgroundImage: `url(${backimage})`,
@@ -231,13 +229,12 @@ export default function Component() {
                 Upload CV
               </label>
               <div className="mt-1">
-                <input
-                  className="block w-full rounded-md border border-gray-300 px-2 py-1 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] text-sm"
-                  id="cv"
-                  name="cv"
-                  type="file"
-                  onChange={handleFileChange}
-                />
+              <input
+                type="file"
+                name="cv"
+                accept=".pdf"
+                onChange={handleFileChange}
+              />
               </div>
             </div>
             <div>
@@ -245,11 +242,10 @@ export default function Component() {
                 Upload Profile Picture
               </label>
               <div className="mt-1">
-                <input
-                  className="block w-full rounded-md border border-gray-300 px-2 py-1 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] text-sm"
-                  id="image"
-                  name="image"              
+              <input
                   type="file"
+                  name="image"
+                  accept="image/*"
                   onChange={handleFileChange}
                 />
               </div>
@@ -260,13 +256,12 @@ export default function Component() {
                 Upload CIN
               </label>
               <div className="mt-1">
-                <input
-                  className="block w-full rounded-md border border-gray-300 px-2 py-1 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] text-sm"
-                  id="cin"
-                  name="cin"
-                  type="file"
-                  onChange={handleFileChange}
-                />
+              <input
+                type="file"
+                name="cin"
+                accept="image/*"
+                onChange={handleFileChange}
+              />
               </div>
             </div>
           <div className="flex justify-center">

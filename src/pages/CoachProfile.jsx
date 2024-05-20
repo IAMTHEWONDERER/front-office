@@ -8,7 +8,7 @@ const StarIcon = ({ fill }) => (
     width="24"
     height="24"
     viewBox="0 0 24 24"
-    fill="none"
+    fill="gold"
     stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="round"
@@ -28,7 +28,6 @@ const StarRating = ({ rating }) => {
   const filledStars = Math.floor(rating);
   const isHalfStar = rating % 1 !== 0;
   const remainingStars = 5 - filledStars - (isHalfStar ? 1 : 0);
-
 };
 
 
@@ -37,12 +36,12 @@ const CoachProfile = () => {
   const [coach, setCoach] = useState(null);
   const [loading, setLoading] = useState(true);
   const [similarCoaches, setSimilarCoaches] = useState([]);
-  const rating = 5 // Example rating number
+  const rating = 5
 
   useEffect(() => {
     const fetchCoachDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:3040/coaches/getcoach/${id}`);
+        const response = await axios.get(`http://localhost:3111/coaches/getcoach/${id}`);
         setCoach(response.data);
         console.log(response.data);
       } catch (error) {
@@ -52,7 +51,7 @@ const CoachProfile = () => {
 
     const fetchSimilarCoaches = async () => {
       try {
-        const response = await axios.get('http://localhost:3040/coaches/getallcoaches');
+        const response = await axios.get('http://localhost:3111/coaches/getallcoaches');
         const allCoaches = response.data;
         const filteredCoaches = allCoaches.filter(coach => coach.id !== id);
         const randomCoaches = filteredCoaches.sort(() => 0.5 - Math.random()).slice(0, 4);
@@ -81,15 +80,15 @@ const CoachProfile = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           <div className="flex items-center justify-center">
             <img
-              alt="Coach Profile"
+              alt="Coach profile"
               className="rounded-full w-64 h-64 object-cover"
-              src="../imgs/allinone.jpg" // Replace with dynamic image if available
+              src={coach.image}
             />
           </div>
           <div className="space-y-6">
-            <div className="flex items-center gap-2">
-              <StarRating rating={rating} />
-              <span className="text-lg font-medium">{rating}</span>
+            <div className="flex items-center gap-2">            
+              <span className="text-xl font-bold">{rating}</span>
+              <StarIcon rating={rating} />
             </div>
             <div>
               <h1 className="text-3xl font-bold">{coach.fullname}</h1>
@@ -115,7 +114,7 @@ const CoachProfile = () => {
                   alt={`Coach ${similarCoach.fullname}`}
                   className="w-full h-48 object-cover"
                   height={300}
-                  src="/placeholder.svg" // Replace with dynamic image if available
+                  src={similarCoach.image} 
                   style={{
                     aspectRatio: "300/300",
                     objectFit: "cover",
@@ -125,9 +124,9 @@ const CoachProfile = () => {
                 <div className="p-4">
                   <h3 className="text-xl font-bold mb-2">{similarCoach.fullname}</h3>
                   <p className="text-gray-500 mb-2">{similarCoach.availability}</p>
-                  <div className="flex items-center gap-1 mb-4">
-                    <StarRating rating={similarCoach.rating} />
+                  <div className="flex items-center gap-1 mb-4">                   
                     <span className="text-sm font-medium">{similarCoach.rating}</span>
+                    <StarIcon rating={similarCoach.rating} />
                   </div>
                   <p className="text-base text-gray-500 line-clamp-3">{similarCoach.bio}</p>
                   <Link to={`/coach/${similarCoach._id}`} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 block text-center">

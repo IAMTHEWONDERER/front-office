@@ -75,6 +75,15 @@ const coachSchema = new Schema({
   cin: {
     type: String  
   },
+
+  rating: {
+    type: Number,
+    default: 0   
+  },
+
+  number_of_ratings: {
+    type: Number
+  },
   
   availability: {
   type: String,
@@ -85,13 +94,12 @@ const coachSchema = new Schema({
 {
      toJSON: {
       transform(doc,ret){
-        delete ret._id;
         delete ret.password;
         delete ret.__v;
         delete ret.updatedAt;
-        delete ret.flag_system;
         delete ret.role; 
         delete ret.bank_details; 
+        delete ret.price;
     }
   }
 },{timestamps: true});
