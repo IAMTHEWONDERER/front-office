@@ -116,7 +116,7 @@ const CoachProfile = () => {
                   height={300}
                   src={similarCoach.image.url} 
                   style={{
-                    aspectRatio: "300/300",
+                    aspectRatio: "300/400",
                     objectFit: "cover",
                   }}
                   width={300}

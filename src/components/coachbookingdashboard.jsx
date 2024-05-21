@@ -61,8 +61,8 @@ export default function Component() {
                             </nav>
                         </div> 
                     </div>
-                    <div className="mt-6 bg-white dark:bg-gray-950 rounded-lg shadow-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
-                        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-800">
+                    <div className="mt-6 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden">
+                        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 ">
                             <div>
                                 <h2 className="text-lg font-semibold">Bookings</h2>
                             </div>
@@ -73,21 +73,21 @@ export default function Component() {
                         </div>
                         <div className="overflow-x-auto">
                             <table className="w-full table-auto" style={{ minWidth: "1250px" }}>
-                                <thead className="bg-gray-100 dark:bg-gray-800">
+                                <thead className="bg-gray-100 ">
                                     <tr>
-                                        <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 dark:text-gray-400">Client Name</th>
-                                        <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 dark:text-gray-400">Price</th>
-                                        <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 dark:text-gray-400">Booking Type</th>
-                                        <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 dark:text-gray-400">Booking Date</th>
+                                        <th className="px-6 py-4 text-left text-sm font-medium text-gray-500">Client Name</th>
+                                        <th className="px-6 py-4 text-left text-sm font-medium text-gray-500">Price</th>
+                                        <th className="px-6 py-4 text-left text-sm font-medium text-gray-500">Booking Type</th>
+                                        <th className="px-6 py-4 text-left text-sm font-medium text-gray-500">Booking Date</th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
+                                <tbody className="divide-y divide-gray-200 ">
                                     {bookings.map(booking => (
                                         <tr key={booking._id}>
-                                            <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-50">{booking.username}</td>
-                                            <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">{booking.price} MAD</td>
-                                            <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">{booking.sessionType}</td>
-                                            <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-50">{new Date(booking.date).toLocaleDateString()}</td>
+                                            <td className="px-6 py-4 text-sm font-medium text-gray-900 ">{booking.username}</td>
+                                            <td className="px-6 py-4 text-sm text-gray-900 ">{booking.price} MAD</td>
+                                            <td className="px-6 py-4 text-sm text-gray-900 ">{booking.sessionType}</td>
+                                            <td className="px-6 py-4 text-sm text-gray-900 ">{new Date(booking.date).toLocaleDateString()}</td>
                                         </tr>
                                     ))}
                                 </tbody>

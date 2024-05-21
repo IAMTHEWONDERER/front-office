@@ -179,6 +179,7 @@ const FilterChoice = () => {
         <div className={`grid grid-cols-1 ${filters.displayFilter === 'grid' ? 'md:grid-cols-2 lg:grid-cols-3' : ''} gap-4`}>
           {filteredCoaches.map(coach => (
             <div key={coach._id} className="bg-white p-4 rounded-lg shadow-lg">
+              <img src={coach.image.url} className="w-80 h-64 object-cover" alt="Coach profile" /><br />
               <h3 className="text-lg font-bold mb-2">{coach.fullname}</h3>
               <p className="mb-2">{coach.city}</p>
               <p className="mb-2">Price: {coach.price} Dh</p>

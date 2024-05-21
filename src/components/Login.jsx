@@ -1,12 +1,11 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import Error from '../handlers/Error'
-import Spinner from '../handlers/Spinner'
+import backimage from '../imgs/backregistercoach.jpg';
 import { useEffect } from 'react';
 
 
-const Login = () => {
+export default function Login() {
   const { loading, userInfo, error } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -37,7 +36,7 @@ const Login = () => {
         const token = userResult.token;
         localStorage.setItem('token', token);
         if (userResult.success) {
-          navigate('/user/dashboard');
+          navigate('/findacoach');
           return; 
         } else {
           console.error('Login error:', 'Invalid login data');
@@ -72,38 +71,71 @@ const Login = () => {
     }
   };  
 
+  const backgroundStyle = {
+    backgroundImage: `url(${backimage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  }; 
+
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center h-screen bg-gray-100">
-      <div className="md:w-1/2 p-6">
-        <h2 className="text-2xl font-bold mb-4">Login Into Atlas</h2>
-        <form onSubmit={handleSubmit(submitForm)} className="w-full">
-          {error && <Error>{error}</Error>}
-          <input
-            type="email"
-            className="w-full border border-gray-300 p-2 rounded-lg mb-2"
-            placeholder="Email"
-            {...register('email', { required: true })}
-          />
-          <input
-            type="password"
-            className="w-full border border-gray-300 p-2 rounded-lg mb-2"
-            placeholder="Password"
-            {...register('password', { required: true })}
-          />
-          <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded-lg">
-            {loading ? <Spinner /> : 'Login'}
-          </button>
-        </form>
-      </div>
-      <div className="md:w-1/2 p-6">
-        <h2 className="text-2xl font-bold mb-4">Login with Social Accounts</h2>
-        <button className="w-full bg-red-800 text-white p-2 rounded-lg mb-2">Login with Google</button>
-        <button className="w-full bg-black text-white p-2 rounded-lg mb-2">Login with Apple</button>
-        <button className="w-full bg-blue-900 text-white p-2 rounded-lg mb-2">Login with Facebook</button>
-        <p className="text-center text-gray-600">Don't have an account? <a href="/register" className="text-blue-500">Register here</a></p>
+    <div className="relative min-h-screen flex items-center justify-center" style={backgroundStyle}>
+      <div className="bg-opacity-45 mt-10 font-koulen backdrop-blur-md bg-gray-200 rounded-lg px-8 py-12 sm:px-12 mx-auto z-10">
+        <div>
+          <h2 className="text-center text-3xl tracking-tight text-white mb-8">SIGN IN</h2>
+        </div>
+        <form onSubmit={handleSubmit(submitForm)} className="space-y-8 space-x-32" method="POST">
+          <div>
+            <div>
+              <label className="block text-lg font-medium text-white" htmlFor="email">
+                Email address
+              </label>
+              <div className="mt-1">
+                <input
+                  autoComplete="email"
+                  className="block w-full font-sans appearance-none mb-8 rounded-md border border-gray-300 px-2 py-1 placeholder:font-koulen placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] text-lg"
+                  id="email"
+                  placeholder='Enter your email'
+                  name="email"
+                  required
+                  type="email"
+                  {...register('email', { required: true })}
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-lg font-medium text-white" htmlFor="password">
+                Password
+              </label>
+              <div className="mt-1">
+                <input
+                  autoComplete="password"
+                  className="block w-full appearance-none rounded-md border border-gray-300 px-2 py-1 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] text-lg"
+                  id="password"
+                  placeholder='Enter your Password'
+                  name="password"
+                  required
+                  type="password"
+                  {...register('password', { required: true })}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 text-center flex text-lg text-black dark:text-gray-400">
+            <div className='mr-9 mt-2 inline-block '>
+           <p className='mr-3 inline-block'>Doesn't have an account?</p>  <a href="registercoach" className="bg-red-600 hover:bg-red-900 mr-3  text-white px-3 py-1 rounded transition duration-300 ease-in-out">Register</a>
+            </div>
+            <button
+              className="bg-red-600 hover:bg-red-900  text-white px-4 py-2 rounded transition duration-300 ease-in-out"
+              type="submit"
+            >
+              Login
+            </button>
+          </div>
+
+        </form>       
       </div>
     </div>
-  );
-};
-
-export default Login;
+  )
+  }
+  
