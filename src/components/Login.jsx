@@ -81,7 +81,7 @@ export default function Login() {
     <div className="relative min-h-screen flex items-center justify-center" style={backgroundStyle}>
       <div className="bg-opacity-45 mt-10 font-koulen backdrop-blur-md bg-gray-200 rounded-lg px-8 py-12 sm:px-12 mx-auto z-10">
         <div>
-          <h2 className="text-center text-3xl tracking-tight text-white mb-8">SIGN IN</h2>
+          <h2 className="text-center text-4xl tracking-tight text-white mb-8">SIGN IN</h2>
         </div>
         <form onSubmit={handleSubmit(submitForm)} className="space-y-8 space-x-32" method="POST">
           <div>
@@ -120,19 +120,17 @@ export default function Login() {
               </div>
             </div>
           </div>
-
-          <div className="mt-6 text-center flex text-lg text-black dark:text-gray-400">
-            <div className='mr-9 mt-2 inline-block '>
-           <p className='mr-3 inline-block'>Doesn't have an account?</p>  <a href="registercoach" className="bg-red-600 hover:bg-red-900 mr-3  text-white px-3 py-1 rounded transition duration-300 ease-in-out">Register</a>
-            </div>
-            <button
-              className="bg-red-600 hover:bg-red-900  text-white px-4 py-2 rounded transition duration-300 ease-in-out"
-              type="submit"
-            >
-              Login
-            </button>
+        <div className="flex flex-col items-center mt-6 text-center text-lg text-black dark:text-gray-400">
+          <button
+            className="bg-red-600 hover:bg-red-900 mr-36 text-white px-4 py-2 rounded transition duration-300 ease-in-out"
+            type="submit"
+          >
+            Login
+          </button>
+          <div className='mr-32 mt-5 '>
+             <p className='mr-3 inline-block'>Doesn't have an account?</p><a href="registercoach" className="underline">Register</a>
           </div>
-
+        </div>
         </form>       
       </div>
     </div>
