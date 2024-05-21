@@ -1,5 +1,5 @@
 import React from 'react'
-import Coachdashboard from '../components/coachbookingdashboard'
+import Coachdashboard from '../components/coachdashboard/coachbookingdashboard'
 
 const Coachbookingdash = () => {
   return (
