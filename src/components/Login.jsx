@@ -92,7 +92,7 @@ export default function Login() {
               <div className="mt-1">
                 <input
                   autoComplete="email"
-                  className="block w-full font-sans appearance-none mb-8 rounded-md border border-gray-300 px-2 py-1 placeholder:font-koulen placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] text-lg"
+                  className="block w-full font-sans appearance-none mb-8 rounded-md border border-gray-300 px-2 py-1 placeholder:font-sans placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] text-lg"
                   id="email"
                   placeholder='Enter your email'
                   name="email"
@@ -109,7 +109,7 @@ export default function Login() {
               <div className="mt-1">
                 <input
                   autoComplete="password"
-                  className="block w-full appearance-none rounded-md border border-gray-300 px-2 py-1 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] text-lg"
+                  className="block w-full appearance-none rounded-md border border-gray-300 px-2 py-1 placeholder:font-sans placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] text-lg"
                   id="password"
                   placeholder='Enter your Password'
                   name="password"
