@@ -232,7 +232,6 @@ const handleUploadSuccess = (url, id, type) => {
               <input
                 type="file"
                 name="cv"
-                accept=".pdf"
                 onChange={handleFileChange}
               />
               </div>
@@ -245,7 +244,6 @@ const handleUploadSuccess = (url, id, type) => {
               <input
                   type="file"
                   name="image"
-                  accept="image/*"
                   onChange={handleFileChange}
                 />
               </div>
@@ -259,7 +257,6 @@ const handleUploadSuccess = (url, id, type) => {
               <input
                 type="file"
                 name="cin"
-                accept="image/*"
                 onChange={handleFileChange}
               />
               </div>

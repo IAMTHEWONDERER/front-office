@@ -6,7 +6,6 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: 'coaches',
-    format: async (req, file) => 'pdf', // supports promises as well
     public_id: (req, file) => Date.now() + '-' + file.originalname,
   },
 });

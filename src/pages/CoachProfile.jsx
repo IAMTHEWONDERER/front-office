@@ -82,7 +82,7 @@ const CoachProfile = () => {
             <img
               alt="Coach profile"
               className="rounded-full w-64 h-64 object-cover"
-              src={coach.image}
+              src={coach.image.url}
             />
           </div>
           <div className="space-y-6">
@@ -114,7 +114,7 @@ const CoachProfile = () => {
                   alt={`Coach ${similarCoach.fullname}`}
                   className="w-full h-48 object-cover"
                   height={300}
-                  src={similarCoach.image} 
+                  src={similarCoach.image.url} 
                   style={{
                     aspectRatio: "300/300",
                     objectFit: "cover",

@@ -7,16 +7,10 @@ import { Typography } from "@mui/material";
 export default function Component() {
 
   const navigate = useNavigate();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [bio, setBio] = useState('');
-  const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState("");
 
-  const handleClose = () => {
-    // Delete token from local storage
+  const handleClose = () => { 
     localStorage.removeItem('token');
-    // Redirect to sign-in page
     navigate('/login');
   };
 

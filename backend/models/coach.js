@@ -76,11 +76,13 @@ const coachSchema = new Schema({
   },
 
   cv: {
-  type: String  
+    public_id: String,
+    url: String,  
   },
 
   cin: {
-    type: String  
+    public_id: String,
+    url: String,  
   },
 
   rating: {
