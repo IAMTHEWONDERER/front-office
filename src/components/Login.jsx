@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import backimage from '../imgs/backregistercoach.jpg';
 import { useEffect } from 'react';
-
+import {jwtDecode} from 'jwt-decode';
 
 export default function Login() {
   const { loading, userInfo, error } = useSelector((state) => state.auth)
@@ -28,15 +28,19 @@ export default function Login() {
         body: JSON.stringify(data),       
       });
 
-      
-
       if (userResponse.ok) {
         const userResult = await userResponse.json();
         console.log('User login successful:', userResult);
         const token = userResult.token;
         localStorage.setItem('token', token);
         if (userResult.success) {
-          navigate('/findacoach');
+          const decodedToken = jwtDecode(token);
+          console.log(decodedToken.weight);
+          if(decodedToken.weight === null){
+            navigate('/userforum');
+          }else {
+            navigate('/findacoach');
+          }
           return; 
         } else {
           console.error('Login error:', 'Invalid login data');

@@ -11,7 +11,7 @@ userroutes.use(express.json());
 userroutes.get('/getall', isAuthenticated, checkAdmin ,  usercontrollers.getAllusers);
 userroutes.get('/getuser/:id', isAuthenticated, checkUserAdmin , usercontrollers.getuserById);
 userroutes.get('/filter', isAuthenticated, checkUserAdmin , usercontrollers.getuserByFilter);
-userroutes.put('/putuser/:id', isAuthenticated, checkUser , createCoachValidationRules(), validate , usercontrollers.updateuserById);
+userroutes.put('/putuser/:id', usercontrollers.updateuserById);
 userroutes.delete('/delete/:id', isAuthenticated, checkUserAdmin , usercontrollers.deleteuserById);
 
 

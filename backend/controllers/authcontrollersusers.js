@@ -53,18 +53,25 @@ registerUser = async (req, res) => {
     //   return res.status(400).send({ error: 'User image is required' });
     // }
 
-    const { fullname, email, password , gender } = req.body;
+    const { fullname, email, password , gender , weight, height, phone_number } = req.body;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ err: "User already exists" });
-    }
+    } 
+
+    const userWeight = weight || null;
+    const userHeight = height || null;
+    const userPhoneNumber = phone_number || null;
 
     const newUser = new User({
       fullname,
       email,
       password,
       gender,
+      weight: userWeight,
+      height: userHeight,
+      phone_number: userPhoneNumber,
       // image: req.file.filename,
     });
     
@@ -136,7 +143,7 @@ loginUser = (req, res) => {
         .compare(password, user.password)
         .then((isMatch) => {
           if (isMatch) {
-            const payload = { id: user.id, fullname: user.fullname };
+            const payload = { id: user.id, fullname: user.fullname , weight: user.weight };
             
             jwt.sign({ ...payload, role: user.role }, "secret", { expiresIn: "7d" }, (err, token) => {
               if (err) {

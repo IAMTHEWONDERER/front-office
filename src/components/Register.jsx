@@ -9,8 +9,6 @@ import { FaApple } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 
-
-
 const Register = () => {
   const { loading, userInfo, error, success, isAuthenticated } = useSelector(
     (state) => state.auth
@@ -26,7 +24,7 @@ const Register = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/user-dashboard'); // Redirect if already authenticated
+      navigate('/user-dashboard');
     }
   }, [navigate, isAuthenticated]);
 
@@ -35,15 +33,16 @@ const Register = () => {
       setError('confirmPassword', {
         type: 'manual',
         message: 'Password mismatch'
-      });
+      });  
       return;
     }
+    navigate("/login");
     dispatch(registerUser(data));
   };
 
   return (
     <div className="flex md:flex-row items-center justify-center h-screen bg-gray-100 pt-20">
-      <div className="md:w-1/2 bg-white p-6 rounded-lg shadow-lg md:mr-6 mb-6 md:mb-0"> {/* Removed transform and transition properties */}
+      <div className="md:w-1/2 bg-white p-6 rounded-lg shadow-lg md:mr-6 mb-6 md:mb-0">
         <div className="mx-auto max-w-md space-y-6"> 
           <div className="space-y-2 text-center">
             <h1 className="text-3xl font-bold">Register</h1>

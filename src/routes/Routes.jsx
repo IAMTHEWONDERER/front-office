@@ -8,6 +8,7 @@ import Registercoach from "../pages/Registercoach";
 import UserDashboard from "../pages/UserDashboard";
 import NotFound from "../pages/NotFound";
 import FilterChoice from "../pages/FilterChoice";
+import Userforum from "../pages/Userforum";
 import Coachdash from "../pages/Coachdashboard";
 import Coachbookingdash from "../pages/Coachbookingdashboard";
 import Coachchatdash from "../pages/Coachchatdashboard";
@@ -36,6 +37,7 @@ const Router = () => {
       <Route path="/user/dashboard" element = {<UserDashboard/>}/>
       <Route path="*" element={<NotFound/>} />
       <Route path="/findacoach" element ={<FilterChoice/>}/>
+      <Route path="/userforum" element ={<Userforum/>}/>
       <Route path={`coach/:id`} element={<CoachProfile />} />   
       <Route path="/login" element={<Login />} />
         <Route 
