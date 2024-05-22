@@ -38,6 +38,7 @@ const CoachProfile = () => {
   const [similarCoaches, setSimilarCoaches] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [numberSessions, setNumberSessions] = useState('');
+  const [price, setPrice] = useState(0);
   const rating = 5;
 
   useEffect(() => {
@@ -68,19 +69,63 @@ const CoachProfile = () => {
     fetchSimilarCoaches();
   }, [id]);
 
+  useEffect(() => {
+    calculatePrice();
+  }, [numberSessions, coach]);
+
+  const calculatePrice = () => {
+    if (!coach) return;
+
+    let basePrice = 0;
+    const sessions = parseInt(numberSessions, 10);
+
+    if (coach.availability === 'online') {
+      if (sessions === 3) {
+        basePrice = 417;
+      } else if (sessions === 6) {
+        basePrice = 774;
+      } else if (sessions === 12) {
+        basePrice = 1428;
+      } else if (sessions === 24) {
+        basePrice = 2616;
+      }
+    } else if (coach.availability === 'In-person') {
+      if (sessions === 3) {
+        basePrice = 477;
+      } else if (sessions === 6) {
+        basePrice = 894;
+      } else if (sessions === 12) {
+        basePrice = 1668;
+      } else if (sessions === 24) {
+        basePrice = 3096;
+      }
+    } else if (coach.availability === 'All-in-one') {
+      if (sessions === 3) {
+        basePrice = 507;
+      } else if (sessions === 6) {
+        basePrice = 954;
+      } else if (sessions === 12) {
+        basePrice = 1788;
+      } else if (sessions === 24) {
+        basePrice = 3348;
+      }
+    }
+
+    setPrice(basePrice);
+  };
+
   const handleBookNow = async (event) => {
     event.preventDefault();
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(`http://localhost:3111/api/postbooking/${id}`, {
-        number_sessions: numberSessions,
+        number_sessions: numberSessions, price: price ,
       }, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': token
         }
-      });
-      alert('Booking successful!');
+      });     
       setIsModalOpen(false);
     } catch (error) {
       console.error('Error creating booking:', error);
@@ -185,6 +230,12 @@ const CoachProfile = () => {
                 <option value="24">24</option>
               </select>
             </div>
+          </div>
+          <div className="mb-4">
+            <label className="block text-lg text-center font-medium text-black" id='price' value={price}>
+              Price: {price} MAD
+            </label>
+            <input type="text" id='price' name='price' value={price} className='hidden' />
           </div>
           <div className="flex items-center justify-between">
             <button

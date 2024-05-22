@@ -78,6 +78,7 @@ const getCheckoutSession = async (req,res) => {
         const coach = await Coach.findById(req.params.coach_id)      
         const token = req.headers.authorization;
         const number_sessions = req.body.number_sessions;
+        const price = req.body.price;
         if (!token) {
           return res.status(401).json({ error: 'Token is missing or invalid' });
         }
@@ -125,7 +126,7 @@ const getCheckoutSession = async (req,res) => {
         const booking = new Booking({
             coach_id: coach._id,
             username: userName,
-            price: 5,
+            price,
             session: session.id,
             sessionType,
             number_sessions,
