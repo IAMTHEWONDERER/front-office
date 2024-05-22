@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
+import Modal from '../components/bookingcomponent';
 
 const StarIcon = ({ fill }) => (
   <svg
@@ -8,7 +9,7 @@ const StarIcon = ({ fill }) => (
     width="24"
     height="24"
     viewBox="0 0 24 24"
-    fill="gold"
+    fill="red"
     stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="round"
@@ -30,13 +31,14 @@ const StarRating = ({ rating }) => {
   const remainingStars = 5 - filledStars - (isHalfStar ? 1 : 0);
 };
 
-
 const CoachProfile = () => {
   const { id } = useParams();
   const [coach, setCoach] = useState(null);
   const [loading, setLoading] = useState(true);
   const [similarCoaches, setSimilarCoaches] = useState([]);
-  const rating = 5
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [numberSessions, setNumberSessions] = useState('');
+  const rating = 5;
 
   useEffect(() => {
     const fetchCoachDetails = async () => {
@@ -66,6 +68,25 @@ const CoachProfile = () => {
     fetchSimilarCoaches();
   }, [id]);
 
+  const handleBookNow = async (event) => {
+    event.preventDefault();
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.post(`http://localhost:3111/api/postbooking/${id}`, {
+        number_sessions: numberSessions,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token
+        }
+      });
+      alert('Booking successful!');
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error('Error creating booking:', error);
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -75,7 +96,7 @@ const CoachProfile = () => {
   }
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-12 md:py-24 lg:py-32">
+    <main className={`flex flex-col items-center justify-center min-h-screen bg-gray-100 py-12 md:py-24 lg:py-32 ${isModalOpen ? '' : ''}`}>
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           <div className="flex items-center justify-center">
@@ -99,7 +120,10 @@ const CoachProfile = () => {
               <p className="text-base text-gray-700">{coach.bio}</p>
             </div>
             <div>
-              <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+              <button 
+                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600" 
+                onClick={() => setIsModalOpen(true)}
+              >
                 Book Now
               </button>
             </div>
@@ -138,6 +162,47 @@ const CoachProfile = () => {
           </div>
         </div>
       </div>
+      <Modal show={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <h2 className="text-2xl font-medium mb-4">Book Coach</h2>
+        <form onSubmit={handleBookNow}>
+          <div className="mb-4">
+            <label className="block text-lg font-medium text-black" htmlFor="number_sessions">
+              Number of Sessions
+            </label>
+            <div className="mt-5">
+              <select
+                className="block w-full appearance-none rounded-md border border-gray-300 px-2 py-1 placeholder-gray-400 shadow-sm focus:border-[#ff0000] focus:outline-none focus:ring-[#ff0000] text-lg"
+                id="number_sessions"
+                name="number_sessions"
+                value={numberSessions}
+                onChange={(e) => setNumberSessions(e.target.value)}
+                required
+              >
+                <option value="">Number of Sessions</option>
+                <option value="3">3</option>
+                <option value="6">6</option>
+                <option value="12">12</option>
+                <option value="24">24</option>
+              </select>
+            </div>
+          </div>
+          <div className="flex items-center justify-between">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Confirm Booking
+            </button>
+            <button
+              type="button"
+              className="ml-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onClick={() => setIsModalOpen(false)}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </Modal>
     </main>
   );
 };
