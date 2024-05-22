@@ -169,9 +169,9 @@ const FilterChoice = () => {
             className="w-full border border-gray-300 p-2 rounded-lg"
           >
             <option value="all">Show All</option>
-            <option value="all-in-one">All-in-one</option>
+            <option value="All-in-one">All-in-one</option>
             <option value="online">online</option>
-            <option value="in person">In person</option>
+            <option value="In-person">In person</option>
           </select>
         </div>
       </div>
@@ -197,7 +197,7 @@ const FilterChoice = () => {
                 <button className="bg-black text-white px-4 py-2 rounded mr-4 hover:bg-gray-900 transition duration-300 ease-in-out">Book Now</button>
                 <button
                   onClick={() => {
-                    console.log('Navigating to coach profile with ID:', coach._id); // Log the ID
+                    console.log('Navigating to coach profile with ID:', coach._id);
                     navigate(`/coach/${coach._id}`);
                   }}
                   className="bg-red-600 hover:bg-red-900 text-white px-4 py-2 rounded transition duration-300 ease-in-out"
