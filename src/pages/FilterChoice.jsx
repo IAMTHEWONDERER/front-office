@@ -97,6 +97,15 @@ const FilterChoice = () => {
     return true;
   });
 
+  const handleBookNow = (coachId) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+    } else {
+      navigate(`/coach/${coachId}`);
+    }
+  };
+
   return (
     <div className="flex flex-col md:flex-row font-koulen">
       <div className="w-full md:w-1/4 p-4 mt-20 bg-gray-100 rounded-lg shadow-lg">
@@ -150,18 +159,6 @@ const FilterChoice = () => {
           )}
         </div>
         <div className="mb-4">
-          <h2 className="text-lg font-bold mb-2">Sort By</h2>
-          <select
-            value={filters.sortBy}
-            onChange={(e) => setFilters({ ...filters, sortBy: e.target.value })}
-            className="w-full border border-gray-300 p-2 rounded-lg"
-          >
-            <option value="default">Default</option>
-            <option value="price">Price</option>
-            <option value="distance">Distance</option>
-          </select>
-        </div>
-        <div className="mb-4">
           <h2 className="text-lg font-bold mb-2">Type of Service</h2>
           <select
             value={filters.availability}
@@ -194,7 +191,10 @@ const FilterChoice = () => {
                 )}
               </div>
               <div className="flex justify-center items-center">
-                <button className="bg-black text-white px-4 py-2 rounded mr-4 hover:bg-gray-900 transition duration-300 ease-in-out">Book Now</button>
+                <button className="bg-black text-white px-4 py-2 rounded mr-4 hover:bg-gray-900 transition duration-300 ease-in-out"
+                onClick={() => handleBookNow(coach._id)}
+                  >Book Now</button>
+
                 <button
                   onClick={() => {
                     console.log('Navigating to coach profile with ID:', coach._id);

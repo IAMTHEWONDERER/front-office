@@ -166,7 +166,7 @@ const CoachProfile = () => {
             </div>
             <div>
               <button 
-                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600" 
+                className="mt-4 px-4 py-2 font-bold bg-black text-white rounded-md shadow-md hover:bg-white hover:text-black focus:outline-none" 
                 onClick={() => setIsModalOpen(true)}
               >
                 Book Now
@@ -240,13 +240,13 @@ const CoachProfile = () => {
           <div className="flex items-center justify-between">
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-black hover:bg-white hover:text-black border-lg border text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline"
             >
               Confirm Booking
             </button>
             <button
               type="button"
-              className="ml-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="ml-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline"
               onClick={() => setIsModalOpen(false)}
             >
               Cancel
