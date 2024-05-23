@@ -25,12 +25,6 @@ const StarIcon = ({ fill }) => (
   </svg>
 );
 
-const StarRating = ({ rating }) => {
-  const filledStars = Math.floor(rating);
-  const isHalfStar = rating % 1 !== 0;
-  const remainingStars = 5 - filledStars - (isHalfStar ? 1 : 0);
-};
-
 const CoachProfile = () => {
   const { id } = useParams();
   const [coach, setCoach] = useState(null);

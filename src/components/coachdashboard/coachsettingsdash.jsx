@@ -99,7 +99,7 @@ export default function Component() {
 
   return (
     <><br /><br /><br />
-    <div className="bg-white min-h-screen text-black flex flex-col">
+    <div className="bg-white min-h-screen border text-black flex flex-col">
       <div className="flex">
         <div className="w-64 p-6 space-y-6">
           <div className="flex items-center space-x-2">

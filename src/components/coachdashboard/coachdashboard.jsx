@@ -71,7 +71,7 @@ export default function Component() {
                 </div>
               </div>
               <div className="mt-4 ">
-                <div className="text-2xl font-bold ml-6">{Totalprofit}</div>
+                <div className="text-2xl font-bold ml-6">{Totalprofit} MAD</div>
               </div>
             </div>
             <div className="bg-white p-4 border-2 border-black rounded-lg ml-10">
