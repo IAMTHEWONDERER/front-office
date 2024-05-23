@@ -11,7 +11,6 @@ import FilterChoice from "../pages/FilterChoice";
 import Userforum from "../pages/Userforum";
 import Coachdash from "../pages/Coachdashboard";
 import Coachbookingdash from "../pages/Coachbookingdashboard";
-import Coachchatdash from "../pages/Coachchatdashboard";
 import Coachsettingsdash from "../pages/Coachsettingsdashboard";
 import CoachProfile from "../pages/CoachProfile";
 import UserSettings from '../pages/Settings';
@@ -25,7 +24,6 @@ const Router = () => {
       <Route path="/registercoach" element={<Registercoach />} />
       <Route path="/coach/dashboard" element={<Coachdash />} />
       <Route path="/coach/bookings" element={<Coachbookingdash />} />
-      <Route path="/coach/chats" element={<Coachchatdash />} />
       <Route path="/coach/Settings" element={<Coachsettingsdash />} />
       <Route path="/homepage" element={<HomePage />} /> 
       <Route path="/services" element={<ServicesPage />} />

@@ -7,6 +7,7 @@ import { Typography } from "@mui/material";
 export default function Component() {
 
   const navigate = useNavigate();
+  const [bookings, setBookings] = useState([]);
   const [fullName, setFullName] = useState("");
   const [Totalprofit, setTotalProfit] = useState("");
 
@@ -38,17 +39,13 @@ export default function Component() {
             <div className="flex items-center justify-between">
             </div>
             <nav className="space-y-1">
-              <a className="flex text-xl items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="dashboard">
+              <a className="flex text-xl  items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="dashboard">
                 <LayoutGridIcon className="h-4 w-4" />
                 <span>Dashboard</span>
               </a>
-              <a className="flex  text-xl items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="bookings">
+              <a className="flex text-xl  items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="bookings">
                 <BarChartIcon className="h-4 w-4" />
                 <span >Bookings</span>
-              </a>
-              <a className="flex text-xl items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="chats">
-                <MessageCircleIcon className="h-4 w-4" />
-                <span>Chats</span>
               </a>
               <a className="flex  text-xl items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="Settings">
                   <SettingsIcon className="h-4 w-4" />

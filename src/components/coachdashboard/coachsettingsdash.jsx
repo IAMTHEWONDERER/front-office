@@ -109,7 +109,7 @@ export default function Component() {
             <div className="flex items-center justify-between">
             </div>
             <nav className="space-y-1">
-              <a className="flex text-xl items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="dashboard">
+              <a className="flex text-xl  items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="dashboard">
                 <LayoutGridIcon className="h-4 w-4" />
                 <span>Dashboard</span>
               </a>
@@ -117,12 +117,7 @@ export default function Component() {
                 <BarChartIcon className="h-4 w-4" />
                 <span >Bookings</span>
               </a>
-              <a className="flex text-xl items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="chats">
-                <MessageCircleIcon className="h-4 w-4" />
-                <span>Chats</span>
-              </a>
-
-              <a className="flex  text-xl items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="Settings">
+              <a className="flex text-xl items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="Settings">
                   <SettingsIcon className="h-4 w-4" />
                   <span>Settings</span>
               </a>
@@ -180,7 +175,7 @@ export default function Component() {
             </div>
             <div className='flex justify-between'>
               <button id="delete-account" className="bg-white-500 border-2 border-red-600 hover:bg-red-600 hover:text-white text-black font-bold py-2 px-4 rounded-full mr-6" onClick={handleDeleteAccount} >Delete Account</button>
-              <button className="bg-white-500 border-2 border-black hover:bg-black hover:text-white text-black font-bold py-2 px-4 rounded-full mr-6" onClick={handleSaveChanges} >Save Changes</button><ToastContainer />      
+              <button className="bg-white-500 border-2 ml-80 border-black hover:bg-black hover:text-white text-black font-bold py-2 px-4 rounded-full mr-6" onClick={handleSaveChanges} >Save Changes</button><ToastContainer />      
               </div>
             </div>
           </div>

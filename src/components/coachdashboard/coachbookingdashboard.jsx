@@ -43,12 +43,8 @@ export default function Component() {
                                     <span>Dashboard</span>
                                 </a>
                                 <a className="flex text-xl items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="bookings">
-                                    <BarChartIcon className="h-4 w-4" />
+                                    <BarChartIcon className="h-4 w-4"/>
                                     <span>Bookings</span>
-                                </a>
-                                <a className="flex text-xl items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="chats">
-                                    <MessageCircleIcon className="h-4 w-4" />
-                                    <span>Chats</span>
                                 </a>
                                 <a className="flex text-xl items-center space-x-2 text-black hover:bg-black hover:text-white p-2 rounded-md" href="Settings">
                                     <SettingsIcon className="h-4 w-4" />
@@ -79,6 +75,7 @@ export default function Component() {
                                         <th className="px-6 py-4 text-left text-sm font-medium text-gray-500">Price</th>
                                         <th className="px-6 py-4 text-left text-sm font-medium text-gray-500">Booking Type</th>
                                         <th className="px-6 py-4 text-left text-sm font-medium text-gray-500">Booking Date</th>
+                                        <th className="px-6 py-4 text-left text-sm font-medium text-gray-500">Number of Sessions</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200 ">
@@ -88,6 +85,7 @@ export default function Component() {
                                             <td className="px-6 py-4 text-sm text-gray-900 ">{booking.price} MAD</td>
                                             <td className="px-6 py-4 text-sm text-gray-900 ">{booking.sessionType}</td>
                                             <td className="px-6 py-4 text-sm text-gray-900 ">{new Date(booking.date).toLocaleDateString()}</td>
+                                            <td className="px-6 py-4 text-sm text-gray-900 ">{booking.number_sessions}</td>
                                         </tr>
                                     ))}
                                 </tbody>
