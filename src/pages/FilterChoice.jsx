@@ -126,7 +126,7 @@ const FilterChoice = () => {
         </div>
         <div className="mb-4">
           <h2 className="text-lg font-bold mb-2">Price Filter</h2>
-          {[149, 199, 249, 299].map(price => (
+          {[149, 199, 249, 1299].map(price => (
             <label key={price} className="flex items-center mb-2">
               <input
                 type="checkbox"
@@ -193,13 +193,10 @@ const FilterChoice = () => {
               <div className="flex justify-center items-center">
                 <button className="bg-black text-white px-4 py-2 rounded mr-4 hover:bg-gray-900 transition duration-300 ease-in-out"
                 onClick={() => handleBookNow(coach._id)}
-                  >Book Now</button>
+                >Book Now</button>
 
                 <button
-                  onClick={() => {
-                    console.log('Navigating to coach profile with ID:', coach._id);
-                    navigate(`/coach/${coach._id}`);
-                  }}
+                  onClick={() => handleBookNow(coach._id)}
                   className="bg-red-600 hover:bg-red-900 text-white px-4 py-2 rounded transition duration-300 ease-in-out"
                 >
                   View Profile
