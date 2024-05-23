@@ -179,7 +179,7 @@ const FilterChoice = () => {
               <img src={coach.image.url} className="w-80 h-64 object-cover" alt="Coach profile" /><br />
               <h3 className="text-lg font-bold mb-2">{coach.fullname}</h3>
               <p className="mb-2">{coach.city}</p>
-              <p className="mb-2">Price: {coach.price} Dh</p>
+              
               <p className="mb-2">Availability: {coach.availability}</p>
               <div className="mb-2">
                 {coach.sessions && typeof coach.sessions === 'object' ? (

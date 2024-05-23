@@ -178,31 +178,36 @@ const CoachProfile = () => {
           <h2 className="text-2xl font-medium mb-6">Similar Coaches</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {similarCoaches.map((similarCoach) => (
-              <div key={similarCoach._id} className="bg-white rounded-lg shadow-md overflow-hidden">
-                <img
-                  alt={`Coach ${similarCoach.fullname}`}
-                  className="w-full h-48 object-cover"
-                  height={300}
-                  src={similarCoach.image.url} 
-                  style={{
-                    aspectRatio: "300/400",
-                    objectFit: "cover",
-                  }}
-                  width={300}
-                />
-                <div className="p-4">
+              <div key={similarCoach._id} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full">
+              <img
+                alt={`Coach ${similarCoach.fullname}`}
+                className="w-full h-48 object-cover"
+                height={300}
+                src={similarCoach.image.url}
+                style={{
+                  aspectRatio: "300/400",
+                  objectFit: "cover",
+                }}
+                width={300}
+              />
+              <div className="flex flex-col p-4 flex-grow">
+                <div className="flex-grow">
                   <h3 className="text-xl font-bold mb-2">{similarCoach.fullname}</h3>
                   <p className="text-gray-500 mb-2">{similarCoach.availability}</p>
-                  <div className="flex items-center gap-1 mb-4">                   
+                  <div className="flex items-center gap-1 mb-4">
                     <span className="text-sm font-medium">{similarCoach.rating}</span>
                     <StarIcon rating={similarCoach.rating} />
                   </div>
                   <p className="text-base text-gray-500 line-clamp-3">{similarCoach.bio}</p>
-                  <Link to={`/coach/${similarCoach._id}`} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 block text-center">
+                </div>
+                <div className="mt-4">
+                  <Link to={`/coach/${similarCoach._id}`} className="px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 block text-center">
                     View Profile
                   </Link>
                 </div>
               </div>
+            </div>
+            
             ))}
           </div>
         </div>
