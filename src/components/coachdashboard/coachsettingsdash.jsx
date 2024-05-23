@@ -9,6 +9,7 @@ export default function Component() {
 
   const navigate = useNavigate();
   const notifyMe = () => toast("Modification Successfully Saved");
+  const notifyU = () => toast("Modification Failed");
 
   const [formData, setFormData] = useState({
     fullname: '',
@@ -17,6 +18,7 @@ export default function Component() {
     phone_number: '',
     gender: '',
     city: '',
+    bio: '',
     address: '',
     image: null,
   });
@@ -64,23 +66,17 @@ export default function Component() {
         address: '',
         image: null,
       });
+      notifyMe();
 
     } catch (error) {
       console.error('Error updating coach information:', error);
+      notifyU();
     }
   };  
 
-  const twoTasks = () => {
-    notifyMe();
-    handleSaveChanges();
-  }
-
-  const handleDeleteAccount = () => {
-  
-    const token = localStorage.getItem('token');
-    
-    const userId = token ? JSON.parse(atob(token.split('.')[1])).id : null;
-  
+  const handleDeleteAccount = () => { 
+    const token = localStorage.getItem('token');    
+    const userId = token ? JSON.parse(atob(token.split('.')[1])).id : null; 
     if (!userId) {
       console.error('User ID not found in token');
       return;
@@ -162,6 +158,15 @@ export default function Component() {
                 <label htmlFor="phone_number" className="font-medium">Phone Number</label>
                 <input type="number" name='phone_number' id="phone_number" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" onChange={handleChange} />
               </div>
+              <div>
+              <label className="font-medium" htmlFor="availability"> Availability </label>
+                <select className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" id="availability" name="availability" onChange={handleChange} >
+                  <option className='font-medium' value="">Select Availability</option>
+                  <option className='font-medium' value="online">online</option>
+                  <option className='font-medium' value="In-person">In-person</option>
+                  <option className='font-medium' value="All-in-one">All-in-one</option>
+                </select>            
+            </div>
             </div>
             <div>
               <label htmlFor="bio" className="font-medium">Bio</label>
@@ -175,7 +180,7 @@ export default function Component() {
             </div>
             <div className='flex justify-between'>
               <button id="delete-account" className="bg-white-500 border-2 border-red-600 hover:bg-red-600 hover:text-white text-black font-bold py-2 px-4 rounded-full mr-6" onClick={handleDeleteAccount} >Delete Account</button>
-              <button className="bg-white-500 border-2 border-black hover:bg-black hover:text-white text-black font-bold py-2 px-4 rounded-full mr-6" onClick={twoTasks} >Save Changes</button><ToastContainer />      
+              <button className="bg-white-500 border-2 border-black hover:bg-black hover:text-white text-black font-bold py-2 px-4 rounded-full mr-6" onClick={handleSaveChanges} >Save Changes</button><ToastContainer />      
               </div>
             </div>
           </div>
@@ -267,28 +272,6 @@ function BarChartIcon(props) {
       >
         <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
         <circle cx="12" cy="12" r="3" />
-      </svg>
-    )
-  }
-  
-  function UsersIcon(props) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
       </svg>
     )
   }

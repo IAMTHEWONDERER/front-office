@@ -8,6 +8,7 @@ export default function Component() {
 
   const navigate = useNavigate();
   const [fullName, setFullName] = useState("");
+  const [Totalprofit, setTotalProfit] = useState("");
 
   const handleClose = () => { 
     localStorage.removeItem('token');
@@ -19,6 +20,7 @@ export default function Component() {
     if (token) {
       const decodedToken = jwtDecode(token);
       setFullName(decodedToken.fullname);
+      setTotalProfit(decodedToken.Totalprofit);
     } else {
       navigate("/login");
     }
@@ -72,7 +74,7 @@ export default function Component() {
                 </div>
               </div>
               <div className="mt-4 ">
-                <div className="text-2xl font-bold ml-6">$3490.00</div>
+                <div className="text-2xl font-bold ml-6">{Totalprofit}</div>
               </div>
             </div>
             <div className="bg-white p-4 border-2 border-black rounded-lg ml-10">

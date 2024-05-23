@@ -35,6 +35,10 @@ const coachSchema = new Schema({
   type: String
   },
 
+  Totalprofit: {
+    type: Number
+  },
+
   address: {
   type: String
   },

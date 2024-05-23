@@ -165,7 +165,7 @@ logincoach = (req, res) => {
         .compare(password, coach.password)
         .then((isMatch) => {
           if (isMatch) {
-            const payload = { id: coach.id, fullname: coach.fullname };
+            const payload = { id: coach.id, fullname: coach.fullname , Totalprofit: coach.Totalprofit };
             
             jwt.sign({ ...payload, role: coach.role }, "secret", { expiresIn: "7d" }, (err, token) => {
               if (err) {

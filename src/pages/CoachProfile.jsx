@@ -206,8 +206,7 @@ const CoachProfile = () => {
                   </Link>
                 </div>
               </div>
-            </div>
-            
+            </div>          
             ))}
           </div>
         </div>
