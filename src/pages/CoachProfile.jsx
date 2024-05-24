@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from 'react-router-dom';
 import Modal from '../components/bookingcomponent';
+import StripeCheckout from "react-stripe-checkout";
 
 const StarIcon = ({ fill }) => (
   <svg
@@ -34,13 +36,13 @@ const CoachProfile = () => {
   const [numberSessions, setNumberSessions] = useState('');
   const [price, setPrice] = useState(0);
   const rating = 5;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchCoachDetails = async () => {
       try {
         const response = await axios.get(`http://localhost:3111/coaches/getcoach/${id}`);
         setCoach(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error('Error fetching coach details:', error);
       }
@@ -108,24 +110,6 @@ const CoachProfile = () => {
     setPrice(basePrice);
   };
 
-  const handleBookNow = async (event) => {
-    event.preventDefault();
-    try {
-      const token = localStorage.getItem('token');
-      const response = await axios.post(`http://localhost:3111/api/postbooking/${id}`, {
-        number_sessions: numberSessions, price: price ,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': token
-        }
-      });     
-      setIsModalOpen(false);
-    } catch (error) {
-      console.error('Error creating booking:', error);
-    }
-  };
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -133,6 +117,34 @@ const CoachProfile = () => {
   if (!coach) {
     return <div>No coach found</div>;
   }
+
+  const makePayment = async token1 => {
+
+    const token = localStorage.getItem('token');
+    const body = {
+      token1,
+      product: coach.fullname,
+      price: price
+    };
+
+    const headers = {
+      "content-type": "application/json",
+      'Authorization': `Bearer ${token}`
+    };
+
+    return fetch(`http://localhost:3111/api/postbooking/${id}`, {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(body)
+    }).then(response => {
+      console.log("RESPONSE", response);
+      const { status } = response;
+      console.log("status", status);
+      
+    }).catch(error => {
+      console.log("ERROR", error);
+    });
+  };
 
   return (
     <main className={`flex flex-col items-center justify-center min-h-screen bg-gray-100 py-12 md:py-24 lg:py-32 ${isModalOpen ? '' : ''}`}>
@@ -146,9 +158,9 @@ const CoachProfile = () => {
             />
           </div>
           <div className="space-y-6">
-            <div className="flex items-center gap-2">            
+            <div className="flex items-center gap-2">
               <span className="text-xl font-bold">{rating}</span>
-              <StarIcon rating={rating} />
+              <StarIcon fill="#ff0000" />
             </div>
             <div>
               <h1 className="text-3xl font-bold">{coach.fullname}</h1>
@@ -173,41 +185,41 @@ const CoachProfile = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {similarCoaches.map((similarCoach) => (
               <div key={similarCoach._id} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full">
-              <img
-                alt={`Coach ${similarCoach.fullname}`}
-                className="w-full h-48 object-cover"
-                height={300}
-                src={similarCoach.image.url}
-                style={{
-                  aspectRatio: "300/400",
-                  objectFit: "cover",
-                }}
-                width={300}
-              />
-              <div className="flex flex-col p-4 flex-grow">
-                <div className="flex-grow">
-                  <h3 className="text-xl font-bold mb-2">{similarCoach.fullname}</h3>
-                  <p className="text-gray-500 mb-2">{similarCoach.availability}</p>
-                  <div className="flex items-center gap-1 mb-4">
-                    <span className="text-sm font-medium">{similarCoach.rating}</span>
-                    <StarIcon rating={similarCoach.rating} />
+                <img
+                  alt={`Coach ${similarCoach.fullname}`}
+                  className="w-full h-48 object-cover"
+                  height={300}
+                  src={similarCoach.image.url}
+                  style={{
+                    aspectRatio: "300/400",
+                    objectFit: "cover",
+                  }}
+                  width={300}
+                />
+                <div className="flex flex-col p-4 flex-grow">
+                  <div className="flex-grow">
+                    <h3 className="text-xl font-bold mb-2">{similarCoach.fullname}</h3>
+                    <p className="text-gray-500 mb-2">{similarCoach.availability}</p>
+                    <div className="flex items-center gap-1 mb-4">
+                      <span className="text-sm font-medium">{similarCoach.rating}</span>
+                      <StarIcon fill="#ff0000" />
+                    </div>
+                    <p className="text-base text-gray-500 line-clamp-3">{similarCoach.bio}</p>
                   </div>
-                  <p className="text-base text-gray-500 line-clamp-3">{similarCoach.bio}</p>
-                </div>
-                <div className="mt-4">
-                  <Link to={`/coach/${similarCoach._id}`} className="px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 block text-center">
-                    View Profile
-                  </Link>
+                  <div className="mt-4">
+                    <Link to={`/coach/${similarCoach._id}`} className="px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 block text-center">
+                      View Profile
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>          
             ))}
           </div>
         </div>
       </div>
       <Modal show={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <h2 className="text-2xl font-medium mb-4">Book Coach</h2>
-        <form onSubmit={handleBookNow}>
+        <form onSubmit={(e) => { e.preventDefault(); }}>
           <div className="mb-4">
             <label className="block text-lg font-medium text-black" htmlFor="number_sessions">
               Number of Sessions
@@ -230,18 +242,26 @@ const CoachProfile = () => {
             </div>
           </div>
           <div className="mb-4">
-            <label className="block text-lg text-center font-medium text-black" id='price' value={price}>
+            <label className="block text-lg text-center font-medium text-black">
               Price: {price} MAD
             </label>
-            <input type="text" id='price' name='price' value={price} className='hidden' />
+            <input type="hidden" id='price' name='price' value={price} />
           </div>
           <div className="flex items-center justify-between">
-            <button
-              type="submit"
-              className="bg-black hover:bg-white hover:text-black border-lg border text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline"
+            <StripeCheckout
+              stripeKey="pk_test_51NDw4VFcu0DV17nt1fQ3FmVxogyvGO6PZ2e6iOzvTySgNVgbAb09x7cSIF99TPujLRqAvVITGhTNfgtvJr8AeVcX00iPdgiyfN"
+              token={makePayment}
+              amount={price * 100}
+              name="Book Coach"
+              currency="USD"
             >
-              Confirm Booking
-            </button>
+              <button
+                type="button"
+                className="bg-black hover:bg-white hover:text-black border-lg border text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline"
+              >
+                Confirm Booking
+              </button>
+            </StripeCheckout>
             <button
               type="button"
               className="ml-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline"

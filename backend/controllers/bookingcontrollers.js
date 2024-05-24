@@ -1,9 +1,9 @@
 const User = require('../models/user');
 const Coach = require('../models/coach');
 const Booking = require('../models/booking');
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const Stripe_Key = "sk_test_51NDw4VFcu0DV17ntoET434fmRVMakCc3fBnksrg8h0mzVwkOz3FpUpke3iYJe6DbBO4adbXXdr4luWdVJo5XinAi00so0l8EP3";
-const Stripe = require("stripe");
+const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
 /**
  * @swagger
@@ -76,21 +76,18 @@ const getCheckoutSession = async (req,res) => {
     try{
 
         const coach = await Coach.findById(req.params.coach_id)      
-        const token = req.headers.authorization;
+        const token = req.headers.authorization.split(' ')[1];
         const number_sessions = req.body.number_sessions;
         const price = req.body.price;
         if (!token) {
           return res.status(401).json({ error: 'Token is missing or invalid' });
         }
-    
-        const tokenValue = token.split(' ')[1];
         const decoded = jwt.verify(token, 'secret');
-
         const user = decoded.id;
 
         const userName = decoded.fullname;
 
-        const stripe = new Stripe(Stripe_Key);
+        const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
         const sessionType = coach.availability;
 
@@ -112,7 +109,7 @@ const getCheckoutSession = async (req,res) => {
                 {
                     price_data :{
                         currency: "USD",
-                        unit_amount: 500,
+                        unit_amount: price * 100,
                         product_data : {
                             name : coach.fullname,
                             description : coach.bio,
@@ -134,7 +131,7 @@ const getCheckoutSession = async (req,res) => {
         })
 
         await booking.save()
-        res.status(200).json({success: true , message: 'Successfully Paid' , session});
+        res.status(200).json({success: true , message: 'Successfully Paid' , sessionId: session.id, sessionUrl: session.url });
 
     } catch (err){
         console.log(err);
