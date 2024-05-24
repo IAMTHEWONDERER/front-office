@@ -119,32 +119,43 @@ const CoachProfile = () => {
   }
 
   const makePayment = async token1 => {
-
     const token = localStorage.getItem('token');
     const body = {
       token1,
       product: coach.fullname,
-      price: price
+      price: price,
+      image: coach.image,
     };
-
+  
     const headers = {
       "content-type": "application/json",
       'Authorization': `Bearer ${token}`
     };
-
-    return fetch(`http://localhost:3111/api/postbooking/${id}`, {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(body)
-    }).then(response => {
-      console.log("RESPONSE", response);
-      const { status } = response;
-      console.log("status", status);
+  
+    try {
+      const response = await fetch(`http://localhost:3111/api/postbooking/${id}`, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body)
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to create checkout session');
+      }
+  
+      const responseData = await response.json();
+      if (responseData.sessionUrl) {
+        
+        window.location.href = responseData.sessionUrl;
+      } else {
+        console.error('Error: Session URL not found in response');
+      }
+    } catch (error) {
+      console.error("ERROR", error);
       
-    }).catch(error => {
-      console.log("ERROR", error);
-    });
+    }
   };
+  
 
   return (
     <main className={`flex flex-col items-center justify-center min-h-screen bg-gray-100 py-12 md:py-24 lg:py-32 ${isModalOpen ? '' : ''}`}>

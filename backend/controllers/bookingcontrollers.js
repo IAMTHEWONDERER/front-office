@@ -113,6 +113,7 @@ const getCheckoutSession = async (req,res) => {
                         product_data : {
                             name : coach.fullname,
                             description : coach.bio,
+
                         }
                     },
                     quantity : 1
