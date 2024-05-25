@@ -11,7 +11,7 @@ export default function Component() {
           <p className="text-gray-500 dark:text-gray-400">
             There was an issue processing your payment. Please try again.
           </p>
-          <a href=""><button class="mt-3 ml-6 bg-black border-2 text-white border-black hover:bg-white hover:text-black font-bold py-2 px-4 rounded-full mr-6">Try Again</button></a>
+          <a href="findacoach"><button class="mt-3 ml-6 bg-black border-2 text-white border-black hover:bg-white hover:text-black font-bold py-2 px-4 rounded-full mr-6">Try Again</button></a>
         </div>
       </div>
     </div>
