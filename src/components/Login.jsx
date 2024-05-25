@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import backimage from '../imgs/backregistercoach.jpg';
-import { useEffect } from 'react';
+import { useEffect , useState } from 'react';
 import {jwtDecode} from 'jwt-decode';
 
 export default function Login() {
@@ -10,6 +10,7 @@ export default function Login() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { register, handleSubmit } = useForm();
+  const [loginError, setLoginError] = useState('');
 
   useEffect(() => {
 
@@ -43,10 +44,10 @@ export default function Login() {
           }
           return; 
         } else {
-          console.error('Login error:', 'Invalid login data');
+          setLoginError('Wrong email or password');
         }
       } else {
-        console.error('Login error:', 'Invalid login data');
+        setLoginError('Wrong email or password');
       }
 
       const coachResponse = await fetch('http://localhost:3111/api/logincoach', {
@@ -65,10 +66,10 @@ export default function Login() {
         if (coachResult.success) {
           navigate('/coach/dashboard');
         } else {
-          console.error('Login error:', 'Invalid login data');
+          setLoginError('Wrong email or password');
         }
       } else {
-        console.error('Login error:', 'Invalid login data');
+        setLoginError('Wrong email or password');
       }
     } catch (error) {
       console.error('Error during login:', error);
@@ -89,6 +90,7 @@ export default function Login() {
         </div>
         <form onSubmit={handleSubmit(submitForm)} className="space-y-8 space-x-32" method="POST">
           <div>
+            {loginError && <p className="text-red-800 text-center text-lg mb-4">{loginError}</p>}
             <div>
               <label className="block text-lg font-medium text-white" htmlFor="email">
                 Email address
