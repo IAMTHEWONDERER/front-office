@@ -3,6 +3,8 @@ import HomePage from "../pages/HomePage";
 import ServicesPage from "../pages/ServicesPage";
 import AboutUs from "../pages/AboutUs";
 import Login from "../pages/Login";
+import CheckoutSuccess from "../pages/CheckoutSuccess";
+import CheckoutFailed from "../pages/CheckoutFailed";
 import Register from "../pages/Register";
 import Registercoach from "../pages/Registercoach";
 import UserDashboard from "../pages/UserDashboard";
@@ -32,6 +34,8 @@ const Router = () => {
       <Route path="/aboutus" element={<AboutUs />} />  
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/checkout-success" element={<CheckoutSuccess />} />
+      <Route path="/checkout-failed" element={<CheckoutFailed />} />
       <Route path="/user/dashboard" element = {<UserDashboard/>}/>
       <Route path="*" element={<NotFound/>} />
       <Route path="/findacoach" element ={<FilterChoice/>}/>
